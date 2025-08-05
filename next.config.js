@@ -1,9 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable static exports for deployment (REQUIRED for Azure Static Web Apps)
+  output: 'export',
+  
+  // Image configuration for static export
   images: {
+    unoptimized: true, // Required for static export
     domains: ['images.unsplash.com', 'via.placeholder.com', 'avatars.githubusercontent.com'],
     formats: ['image/webp', 'image/avif'],
   },
+  
   webpack: (config, { isServer }) => {
     // Optimize bundle size
     if (!isServer) {
@@ -15,12 +21,15 @@ const nextConfig = {
     
     return config;
   },
+  
   // Enable static exports for deployment
   trailingSlash: true,
+  
   // Optimize for performance
   compress: true,
   poweredByHeader: false,
-  // Security headers
+  
+  // Security headers (Note: Some may not work with static hosting)
   async headers() {
     return [
       {
@@ -42,6 +51,14 @@ const nextConfig = {
       },
     ];
   },
+  
+  // Handle ESLint and TypeScript for static builds
+  eslint: {
+    ignoreDuringBuilds: false, // Keep ESLint checking enabled
+  },
+  typescript: {
+    ignoreBuildErrors: false, // Keep TypeScript checking enabled
+  }
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;
