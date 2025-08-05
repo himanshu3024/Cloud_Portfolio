@@ -33,45 +33,28 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # 3️⃣ Clean install with legacy peer deps to handle conflicts
-      - name: Clean and Install Dependencies
+      # 3️⃣ Install dependencies and build
+      - name: Install Dependencies and Build
         run: |
-          echo "Cleaning npm cache and node_modules..."
-          rm -rf node_modules package-lock.json
-          npm cache clean --force
+          echo "Installing dependencies..."
+          npm ci --legacy-peer-deps || npm install --legacy-peer-deps
           
-          echo "Installing dependencies with legacy peer deps..."
-          npm install --legacy-peer-deps
-        shell: bash
-
-      # 4️⃣ Fix Storybook version conflicts
-      - name: Fix Storybook Dependencies
-        run: |
-          echo "Fixing Storybook version conflicts..."
-          # Update addon-essentials to match Storybook v9
-          npm install @storybook/addon-essentials@^9.1.0 --legacy-peer-deps
-        shell: bash
-
-      # 5️⃣ Build project with error handling
-      - name: Build Project
-        run: |
           echo "Building project..."
-          npm run build || { echo "Build failed!"; exit 1; }
+          npm run build
         shell: bash
 
-      # 6️⃣ Deploy to Azure Static Web Apps
+      # 4️⃣ Deploy to Azure Static Web Apps
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_OCEAN_080A5230F }}
           action: "upload"
-          app_location: "/"        # App source code path
-          api_location: ""         # Api source code path - optional
-          output_location: "build" # Built app content directory
-          skip_app_build: true     # Skip Oryx build
+          app_location: "/"
+          api_location: ""
+          output_location: "build"
+          skip_app_build: true
 
-  # 🔹 Close Pull Request Job
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
