@@ -32,7 +32,24 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+          # Install missing TypeScript ESLint dependencies
+          npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser --legacy-peer-deps
           npm run build
+          
+      # 3.5️⃣ Verify build output exists
+      - name: Verify build output
+        run: |
+          echo "Checking if out directory exists..."
+          ls -la
+          if [ -d "out" ]; then
+            echo "✅ out directory found"
+            ls -la out/
+          else
+            echo "❌ out directory not found"
+            echo "Available directories:"
+            find . -name "index.html" -type f
+            exit 1
+          fi
 
       # 4️⃣ Install tiny OIDC helper libraries
       - name: Install OIDC helper libs

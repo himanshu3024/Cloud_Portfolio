@@ -29,32 +29,12 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  // Security headers (Note: Some may not work with static hosting)
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
-  },
+  // Note: headers() function doesn't work with static export
+  // Use staticwebapp.config.json instead for Azure Static Web Apps
   
   // Handle ESLint and TypeScript for static builds
   eslint: {
-    ignoreDuringBuilds: false, // Keep ESLint checking enabled
+    ignoreDuringBuilds: false, // Keep ESLint checking enabled now that deps are fixed
   },
   typescript: {
     ignoreBuildErrors: false, // Keep TypeScript checking enabled
