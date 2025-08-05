@@ -1,3 +1,4 @@
+# .github/workflows/azure-static-web-apps.yml
 name: Azure Static Web Apps CI/CD
 
 on:
@@ -16,48 +17,50 @@ jobs:
       contents: read
 
     steps:
-    # ── checkout ───────────────────────────────────────────────
-    - uses: actions/checkout@v3
-      with:
-        submodules: true
-        lfs: false
+      # 1️⃣ Check out repository
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
 
-    # ── node & dependencies ────────────────────────────────────
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: 'npm'
+      # 2️⃣ Set up Node.js and restore npm cache
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-    - name: Install deps → build → export
-      run: |
-        npm ci --legacy-peer-deps || npm install --legacy-peer-deps
-        npm run build
-        npx next export -o out          # ⬅️ creates the static `out/` folder
+      # 3️⃣ Install dependencies, build, and export static site
+      - name: Install dependencies, build, export
+        run: |
+          npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+          npm run build
+          npx next export   # creates the static `out/` folder
 
-    # ── OIDC token for SPA workflow ────────────────────────────
-    - run: npm install @actions/core@1.6.0 @actions/http-client --legacy-peer-deps
-      name: Install OIDC helper libs
+      # 4️⃣ Install tiny OIDC helper libraries
+      - name: Install OIDC helper libs
+        run: npm install @actions/core@1.6.0 @actions/http-client --legacy-peer-deps
 
-    - name: Get ID token
-      id: idtoken
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const { getIDToken } = require('@actions/core');
-          return await getIDToken();
-        result-encoding: string
+      # 5️⃣ Obtain GitHub-issued ID token (for Azure SWA action)
+      - name: Get ID token
+        id: idtoken
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { getIDToken } = require('@actions/core');
+            return await getIDToken();
+          result-encoding: string
 
-    # ── deploy ─────────────────────────────────────────────────
-    - name: Deploy to Azure Static Web Apps
-      uses: Azure/static-web-apps-deploy@v1
-      with:
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_OCEAN_080A5230F }}
-        action: upload
-        app_location: "/"        # repo root
-        api_location: ""         # no API
-        output_location: "out"   # ⬅️ folder we just exported
-        skip_app_build: true
-        github_id_token: ${{ steps.idtoken.outputs.result }}
+      # 6️⃣ Deploy pre-built site to Azure Static Web Apps
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_OCEAN_080A5230F }}
+          action: upload
+          app_location: "/"   # repo root
+          api_location: ""    # no API
+          output_location: "out"   # folder created by `next export`
+          skip_app_build: true     # we've already built locally
+          github_id_token: ${{ steps.idtoken.outputs.result }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -65,9 +68,10 @@ jobs:
     permissions:
       id-token: write
       contents: read
+
     steps:
-    - name: Close Pull Request
-      uses: Azure/static-web-apps-deploy@v1
-      with:
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_OCEAN_080A5230F }}
-        action: close
+      - name: Close Pull Request Preview
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_OCEAN_080A5230F }}
+          action: close
