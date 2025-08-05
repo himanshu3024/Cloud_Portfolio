@@ -37,8 +37,9 @@ jobs:
           npm ci --legacy-peer-deps || npm install --legacy-peer-deps
           npm run build
 
+      # Install OIDC dependencies with legacy peer deps
       - name: Install OIDC Client from Core Package
-        run: npm install @actions/core@1.6.0 @actions/http-client
+        run: npm install @actions/core@1.6.0 @actions/http-client --legacy-peer-deps
 
       - name: Get Id Token
         uses: actions/github-script@v6
