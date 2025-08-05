@@ -13,7 +13,8 @@ import {
   Zap,
   Globe,
   Lock,
-  Cpu
+  Cpu,
+  Github
 } from 'lucide-react';
 
 interface Skill {
@@ -29,7 +30,12 @@ interface Skill {
   yearStarted: number;
 }
 
-const skillCategories = [
+const skillCategories: {
+  title: string;
+  icon: any;
+  color: string;
+  skills: Skill[];
+}[] = [
   {
     title: 'Cloud Platforms',
     icon: Cloud,
@@ -37,7 +43,7 @@ const skillCategories = [
     skills: [
       { 
         name: 'AWS', 
-        level: 'Advanced', 
+        level: 'Advanced' as const, 
         icon: '☁️', 
         description: 'EC2, S3, Lambda, IAM, CloudWatch, EKS',
         experience: 95,
@@ -49,7 +55,7 @@ const skillCategories = [
       },
       { 
         name: 'Azure', 
-        level: 'Advanced', 
+        level: 'Advanced' as const, // ✅ Fixed: Added 'as const'
         icon: '🔷', 
         description: 'Azure Functions, Static Web Apps, AKS, Azure OpenAI',
         experience: 90,
@@ -61,7 +67,7 @@ const skillCategories = [
       },
       { 
         name: 'GCP', 
-        level: 'Intermediate', 
+        level: 'Intermediate' as const, // ✅ Fixed: Added 'as const'
         icon: '🔵', 
         description: 'GKE, Cloud Run, Cloud Functions, BigQuery',
         experience: 75,
@@ -76,12 +82,12 @@ const skillCategories = [
     icon: Zap,
     color: 'from-purple-500 to-pink-500',
     skills: [
-      { name: 'Docker', level: 'Advanced', icon: '🐳', description: 'Containerization, Docker Compose' },
-      { name: 'Kubernetes', level: 'Advanced', icon: '☸️', description: 'Orchestration, Helm Charts' },
-      { name: 'Jenkins', level: 'Intermediate', icon: '🤖', description: 'Pipeline Automation, Groovy' },
-      { name: 'GitHub Actions', level: 'Advanced', icon: '⚡', description: 'CI/CD Workflows, YAML' },
-      { name: 'Terraform', level: 'Intermediate', icon: '🏗️', description: 'Infrastructure as Code' },
-      { name: 'Ansible', level: 'Intermediate', icon: '🔧', description: 'Configuration Management' },
+      { name: 'Docker', level: 'Advanced' as const, icon: '🐳', description: 'Containerization, Docker Compose', experience: 90, yearStarted: 2023 },
+      { name: 'Kubernetes', level: 'Advanced' as const, icon: '☸️', description: 'Orchestration, Helm Charts', experience: 85, yearStarted: 2023 },
+      { name: 'Jenkins', level: 'Intermediate' as const, icon: '🤖', description: 'Pipeline Automation, Groovy', experience: 75, yearStarted: 2023 },
+      { name: 'GitHub Actions', level: 'Advanced' as const, icon: '⚡', description: 'CI/CD Workflows, YAML', experience: 95, yearStarted: 2023 },
+      { name: 'Terraform', level: 'Intermediate' as const, icon: '🏗️', description: 'Infrastructure as Code', experience: 70, yearStarted: 2023 },
+      { name: 'Ansible', level: 'Intermediate' as const, icon: '🔧', description: 'Configuration Management', experience: 65, yearStarted: 2023 },
     ]
   },
   {
@@ -89,10 +95,10 @@ const skillCategories = [
     icon: Code,
     color: 'from-green-500 to-emerald-500',
     skills: [
-      { name: 'Python', level: 'Advanced', icon: '🐍', description: 'Automation, APIs, Data Processing' },
-      { name: 'Bash', level: 'Advanced', icon: '💻', description: 'Shell Scripting, System Administration' },
-      { name: 'YAML', level: 'Advanced', icon: '📄', description: 'Configuration Files, Kubernetes' },
-      { name: 'JSON', level: 'Advanced', icon: '📋', description: 'API Integration, Data Exchange' },
+      { name: 'Python', level: 'Advanced' as const, icon: '🐍', description: 'Automation, APIs, Data Processing', experience: 95, yearStarted: 2023 },
+      { name: 'Bash', level: 'Advanced' as const, icon: '💻', description: 'Shell Scripting, System Administration', experience: 90, yearStarted: 2023 },
+      { name: 'YAML', level: 'Advanced' as const, icon: '📄', description: 'Configuration Files, Kubernetes', experience: 95, yearStarted: 2023 },
+      { name: 'JSON', level: 'Advanced' as const, icon: '📋', description: 'API Integration, Data Exchange', experience: 95, yearStarted: 2023 },
     ]
   },
   {
@@ -100,11 +106,11 @@ const skillCategories = [
     icon: Server,
     color: 'from-orange-500 to-red-500',
     skills: [
-      { name: 'VPC', level: 'Advanced', icon: '🌐', description: 'Network Isolation, Security Groups' },
-      { name: 'Load Balancers', level: 'Intermediate', icon: '⚖️', description: 'Traffic Distribution, HA' },
-      { name: 'DNS', level: 'Intermediate', icon: '🔗', description: 'Domain Management, CDN' },
-      { name: 'VPN', level: 'Intermediate', icon: '🔒', description: 'Secure Connectivity' },
-      { name: 'TCP/IP', level: 'Intermediate', icon: '📡', description: 'Network Protocols' },
+      { name: 'VPC', level: 'Advanced' as const, icon: '🌐', description: 'Network Isolation, Security Groups', experience: 90, yearStarted: 2023 },
+      { name: 'Load Balancers', level: 'Intermediate' as const, icon: '⚖️', description: 'Traffic Distribution, HA', experience: 75, yearStarted: 2023 },
+      { name: 'DNS', level: 'Intermediate' as const, icon: '🔗', description: 'Domain Management, CDN', experience: 80, yearStarted: 2023 },
+      { name: 'VPN', level: 'Intermediate' as const, icon: '🔒', description: 'Secure Connectivity', experience: 70, yearStarted: 2023 },
+      { name: 'TCP/IP', level: 'Intermediate' as const, icon: '📡', description: 'Network Protocols', experience: 75, yearStarted: 2023 },
     ]
   },
   {
@@ -112,10 +118,10 @@ const skillCategories = [
     icon: Shield,
     color: 'from-red-500 to-pink-500',
     skills: [
-      { name: 'IAM', level: 'Advanced', icon: '👤', description: 'Identity & Access Management' },
-      { name: 'RBAC', level: 'Intermediate', icon: '🔐', description: 'Role-Based Access Control' },
-      { name: 'CloudWatch', level: 'Intermediate', icon: '📊', description: 'Monitoring & Logging' },
-      { name: 'Azure Monitor', level: 'Intermediate', icon: '📈', description: 'Performance Monitoring' },
+      { name: 'IAM', level: 'Advanced' as const, icon: '👤', description: 'Identity & Access Management', experience: 90, yearStarted: 2023 },
+      { name: 'RBAC', level: 'Intermediate' as const, icon: '🔐', description: 'Role-Based Access Control', experience: 75, yearStarted: 2023 },
+      { name: 'CloudWatch', level: 'Intermediate' as const, icon: '📊', description: 'Monitoring & Logging', experience: 80, yearStarted: 2023 },
+      { name: 'Azure Monitor', level: 'Intermediate' as const, icon: '📈', description: 'Performance Monitoring', experience: 75, yearStarted: 2023 },
     ]
   },
   {
@@ -123,9 +129,9 @@ const skillCategories = [
     icon: Cpu,
     color: 'from-gray-500 to-slate-500',
     skills: [
-      { name: 'Linux (Ubuntu)', level: 'Advanced', icon: '🐧', description: 'System Administration' },
-      { name: 'Linux (CentOS)', level: 'Intermediate', icon: '🔴', description: 'Server Management' },
-      { name: 'Windows Server', level: 'Intermediate', icon: '🪟', description: 'Active Directory' },
+      { name: 'Linux (Ubuntu)', level: 'Advanced' as const, icon: '🐧', description: 'System Administration', experience: 90, yearStarted: 2023 },
+      { name: 'Linux (CentOS)', level: 'Intermediate' as const, icon: '🔴', description: 'Server Management', experience: 75, yearStarted: 2023 },
+      { name: 'Windows Server', level: 'Intermediate' as const, icon: '🪟', description: 'Active Directory', experience: 70, yearStarted: 2023 },
     ]
   }
 ];
@@ -467,4 +473,4 @@ export default function SkillsSection() {
       </div>
     </section>
   );
-} 
+}
