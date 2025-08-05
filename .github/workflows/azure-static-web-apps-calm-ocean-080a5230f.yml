@@ -33,29 +33,29 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # 3️⃣ Install dependencies with retry and error handling
-      - name: Install Dependencies
+      # 3️⃣ Clean install with legacy peer deps to handle conflicts
+      - name: Clean and Install Dependencies
         run: |
-          echo "Installing dependencies..."
-          npm ci --legacy-peer-deps || (echo "npm ci failed, retrying with npm install..." && npm install --legacy-peer-deps)
+          echo "Cleaning npm cache and node_modules..."
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+          
+          echo "Installing dependencies with legacy peer deps..."
+          npm install --legacy-peer-deps
         shell: bash
 
-      # 4️⃣ Fix ESLint configuration
-      - name: Install TypeScript ESLint Dependencies
+      # 4️⃣ Fix Storybook version conflicts
+      - name: Fix Storybook Dependencies
         run: |
-          echo "Installing missing ESLint dependencies..."
-          npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser
+          echo "Fixing Storybook version conflicts..."
+          # Update addon-essentials to match Storybook v9
+          npm install @storybook/addon-essentials@^9.1.0 --legacy-peer-deps
         shell: bash
 
-      # 5️⃣ Build project with error handling and type checking disabled temporarily
+      # 5️⃣ Build project with error handling
       - name: Build Project
         run: |
           echo "Building project..."
-          # Temporarily disable type checking to allow build to proceed
-          NEXT_CONFIG_JS="module.exports={typescript:{ignoreBuildErrors:true},eslint:{ignoreDuringBuilds:true}}"
-          echo "$NEXT_CONFIG_JS" > next.config.temp.js
-          mv next.config.js next.config.original.js 2>/dev/null || true
-          mv next.config.temp.js next.config.js
           npm run build || { echo "Build failed!"; exit 1; }
         shell: bash
 
