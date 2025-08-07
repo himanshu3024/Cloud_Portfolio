@@ -58,18 +58,18 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Multi-Cloud Infrastructure with Terraform',
-    description: 'Infrastructure as Code project deploying resources across AWS, Azure, and GCP using Terraform.',
-    image: '/projects/terraform-multicloud.jpg',
+    title: 'Modern Portfolio & Personal Brand Platform',
+    description: 'This portfolio is a cloud-friendly, performance-optimized Next.js app with theme-aware UI, animated interactions, and modular sections that showcase projects, skills, and experience with recruiter-focused structure.',
+    image: '/images/portfolio.jpg',
     category: 'DevOps',
-    technologies: ['Terraform', 'AWS', 'Azure', 'GCP', 'Docker'],
-    github: 'https://github.com/himanshu-gandhi/terraform-multicloud',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel', 'SEO/JSON-LD'],
+    github: 'https://github.com/himanshu3024/Cloud_Portfolio',
     live: null,
     features: [
-      'Multi-cloud resource management',
-      'Infrastructure as Code',
-      'Automated provisioning',
-      'State management'
+      'Dark/Light theme with adaptive tokens',
+      'Interactive skills & deep-dive project modals',
+      'Accessible animations with aria-live typing hero',
+      'Performance tweaks: lazy images, preloads, static export'
     ],
     icon: Zap,
     color: 'from-orange-500 to-red-500'
@@ -316,9 +316,12 @@ export default function ProjectsSection() {
                     {project.title}
                   </h3>
                   
-                  <p className="text-foreground/60 mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
+                  {/* Problem → Approach → Outcome → Stack */}
+                  <div className="text-sm text-foreground/70 space-y-1 mb-4">
+                    <div><span className="font-semibold">Problem:</span> {project.description}</div>
+                    <div><span className="font-semibold">Approach:</span> IaC + CI/CD with best-practice patterns</div>
+                    <div><span className="font-semibold">Outcome:</span> Faster, safer deploys; cleaner operations</div>
+                  </div>
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -373,14 +376,14 @@ export default function ProjectsSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Project Modal */}
+        {/* Project Modal with deep dive */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[80] flex items-center justify-center p-4"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
@@ -418,15 +421,26 @@ export default function ProjectsSection() {
                   
                   {/* Project Image in Modal */}
                   <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-cover"
-                    />
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   </div>
 
                   <p className="text-foreground/70 mb-6">{selectedProject.description}</p>
+                  <div className="grid md:grid-cols-2 gap-4 mb-6">
+                    <div className="bg-secondary/30 rounded-lg p-3">
+                      <h5 className="font-semibold mb-2">Architecture</h5>
+                      <p className="text-sm text-foreground/70">Layered: client → API → infra. Separation of concerns with IaC for repeatability.</p>
+                    </div>
+                    <div className="bg-secondary/30 rounded-lg p-3">
+                      <h5 className="font-semibold mb-2">Cost Notes</h5>
+                      <p className="text-sm text-foreground/70">Right-size instances; use spot/preemptible; storage lifecycle rules; env-based scaling.</p>
+                    </div>
+                  </div>
 
                   <div className="space-y-6">
                     <div>

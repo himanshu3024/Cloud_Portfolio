@@ -6,7 +6,7 @@ interface FloatingParticlesProps {
 
 export default function FloatingParticles({ count = 50 }: FloatingParticlesProps) {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}

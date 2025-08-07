@@ -209,75 +209,73 @@ export default function SkillsSection() {
           </p>
         </motion.div>
 
-        {/* Skill Categories */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="skill-card group"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className={`p-2 rounded-lg bg-gradient-to-r ${category.color}`}>
-                  <category.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold">{category.title}</h3>
-              </div>
-              
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.3, delay: (index * 0.1) + (skillIndex * 0.05) }}
-                    className="relative cursor-pointer"
-                    onClick={() => {
-                      setSelectedSkill(skill);
-                      setIsFlipped(false);
-                    }}
-                  >
-                    {/* Front of Card */}
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/50 hover:bg-secondary/70 transition-all duration-200 group-hover:scale-105">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-2xl">{skill.icon}</span>
-                        <div>
-                          <div className="font-semibold text-foreground/90">{skill.name}</div>
-                          <div className="text-sm text-foreground/60">{skill.description}</div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-end space-y-2">
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          skill.level === 'Advanced' 
-                            ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                            : skill.level === 'Intermediate'
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                            : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
-                        }`}>
-                          {skill.level}
-                        </span>
-                        {/* Experience Bar */}
-                        <div className="w-24 h-1 bg-secondary rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${skill.experience}%` }}
-                            transition={{ duration: 1, delay: (index * 0.1) + (skillIndex * 0.05) }}
-                            className={`h-full ${
-                              skill.experience > 80 ? 'bg-green-500' :
-                              skill.experience > 60 ? 'bg-blue-500' :
-                              'bg-yellow-500'
-                            }`}
-                          />
-                        </div>
+        {/* Interactive skill cards */}
+        <div className="mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {skillCategories.flatMap((category, catIdx) => 
+              category.skills.map((skill, idx) => (
+                <motion.div
+                  key={`${category.title}-${skill.name}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: (catIdx * 0.1) + (idx * 0.03) }}
+                  whileHover={{ y: -6 }}
+                  className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm hover:shadow-xl transition-all duration-300 perspective-1000"
+                  onClick={() => {
+                    setSelectedSkill(skill);
+                    setIsFlipped(false);
+                  }}
+                  role="button"
+                  aria-label={`Open details for ${skill.name}`}
+                >
+                  {/* Subtle category gradient overlay */}
+                  <div className={`pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br ${category.color}`} />
+
+                  <div className="relative z-10 flex items-start justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl" aria-hidden="true">{skill.icon}</span>
+                      <div>
+                        <div className="font-semibold text-foreground/90 text-base">{skill.name}</div>
+                        <div className="text-xs text-foreground/60">{category.title}</div>
                       </div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                    <span className={`text-[10px] px-2 py-1 rounded-full self-start ${
+                      skill.level === 'Advanced' 
+                        ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                        : skill.level === 'Intermediate'
+                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                        : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
+                    }`}>
+                      {skill.level}
+                    </span>
+                  </div>
+
+                  <p className="relative z-10 mt-3 text-sm text-foreground/70 line-clamp-3">
+                    {skill.description}
+                  </p>
+
+                  {/* Progress */}
+                  <div className="relative z-10 mt-4">
+                    <div className="flex justify-between text-xs text-foreground/60 mb-1">
+                      <span>Proficiency</span>
+                      <span>{skill.experience}%</span>
+                    </div>
+                    <div className="h-2 w-full rounded-full bg-secondary/50 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={inView ? { width: `${skill.experience}%` } : {}}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className={`h-full rounded-full ${skill.experience > 80 ? 'bg-green-500' : skill.experience > 60 ? 'bg-blue-500' : 'bg-yellow-500'}`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Hover micro glow */}
+                  <div className="absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_24px_rgba(14,165,233,0.18)]" />
+                </motion.div>
+              ))
+            )}
+          </div>
         </div>
 
         {/* Skill Detail Modal */}
@@ -287,7 +285,7 @@ export default function SkillsSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[80] flex items-center justify-center p-4"
               onClick={() => setSelectedSkill(null)}
             >
               <motion.div

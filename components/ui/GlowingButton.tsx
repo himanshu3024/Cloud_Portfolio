@@ -24,7 +24,7 @@ export default function GlowingButton({
       }}
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
-      className={`relative group overflow-hidden ${className}`}
+      className={`relative group overflow-hidden transition-colors duration-300 ${className}`}
     >
       <motion.div
         initial={{ opacity: 0.5 }}

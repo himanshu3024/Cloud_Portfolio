@@ -121,7 +121,7 @@
   }
 
   .glassmorphism::before {
-    @apply content-[""] absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300;
+    @apply content-[""] absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none;
   }
 
   .glassmorphism:hover::before {
@@ -218,6 +218,13 @@
     --toast-bg: #ffffff;
     --toast-color: #1f2937;
     --toast-border: #e5e7eb;
+    /* Theme-aware custom variables */
+    --text-color: hsl(var(--foreground));
+    --muted-text-color: hsl(var(--muted-foreground));
+    --divider-color: hsl(var(--border));
+    --card-bg: hsl(var(--card));
+    --icon-surface-bg: rgba(255, 255, 255, 0.7);
+    --icon-filter: none;
   }
 
   .dark {
@@ -243,11 +250,19 @@
     --toast-bg: #000000;
     --toast-color: #ffffff;
     --toast-border: rgba(255, 255, 255, 0.1);
+    /* Theme-aware custom variables (dark overrides) */
+    --text-color: hsl(var(--foreground));
+    --muted-text-color: hsl(var(--muted-foreground));
+    --divider-color: hsl(var(--border));
+    --card-bg: hsl(var(--card));
+    --icon-surface-bg: rgba(24, 24, 27, 0.7);
+    --icon-filter: drop-shadow(0 2px 10px rgba(14, 165, 233, 0.15)) brightness(1.05);
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    transition: background-color 250ms ease, color 250ms ease;
   }
 
   .custom-cursor {
@@ -293,6 +308,7 @@
 
   .glassmorphism {
     background-color: rgb(255 255 255 / 0.1);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border: 1px solid rgb(255 255 255 / 0.2);
   }
@@ -302,6 +318,7 @@
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.05),
       0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -315,10 +332,14 @@
   }
 
   .gradient-text {
-    background-image: linear-gradient(to right, hsl(var(--primary-500)), hsl(var(--accent-500)), hsl(var(--primary-600)));
+    background-image: linear-gradient(to right, #7dd3fc, #00AEEF, #38bdf8);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .dark .gradient-text {
+    background-image: linear-gradient(to right, #93c5fd, #00AEEF, #60a5fa);
   }
 
   .cloud-gradient {
@@ -509,6 +530,28 @@
 }
 
 @layer utilities {
+  .text-theme {
+    color: var(--text-color);
+  }
+  .text-muted-theme {
+    color: var(--muted-text-color);
+  }
+  .border-theme {
+    border-color: var(--divider-color);
+  }
+  .bg-card-theme {
+    background: var(--card-bg);
+  }
+  .icon-surface {
+    background: var(--icon-surface-bg);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--divider-color);
+  }
+  .icon-theme {
+    filter: var(--icon-filter);
+    transition: filter 250ms ease;
+  }
   .text-balance {
     text-wrap: balance;
   }

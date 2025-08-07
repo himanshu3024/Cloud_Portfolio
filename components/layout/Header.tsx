@@ -56,7 +56,7 @@ export default function Header() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] pointer-events-auto transition-all duration-300 will-change-transform ${
         scrolled 
           ? 'glassmorphism dark:glassmorphism-dark shadow-lg' 
           : 'bg-transparent'
@@ -72,14 +72,14 @@ export default function Header() {
               className="flex items-center space-x-2 cursor-pointer"
             >
               <div className="relative">
-                <Cloud className="h-8 w-8 text-primary-500" />
+                <Cloud className="h-8 w-8 text-emerald-400" />
                 <motion.div
-                  className="absolute inset-0 bg-primary-500 rounded-full opacity-20"
+                  className="absolute inset-0 bg-emerald-400 rounded-full opacity-20"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </div>
-              <span className="text-xl font-bold gradient-text">
+              <span className="text-xl font-bold text-emerald-400">
                 Himanshu Gandhi
               </span>
             </motion.div>

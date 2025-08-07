@@ -108,96 +108,67 @@ export default function AboutSection() {
           </p>
         </motion.div>
 
-        {/* 1. My Origin Story */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
-        >
-          <div className="bg-card rounded-xl p-8 shadow-lg border border-border">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mr-4">
-                <Heart className="h-6 w-6 text-white" />
+        {/* Tightened narrative: Who I am / What I value / What you get */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {/* Who I am */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-card rounded-xl p-6 shadow-lg border border-border"
+          >
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center mr-3">
+                <Heart className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-2xl font-bold">My Origin Story</h3>
+              <h3 className="text-xl font-bold">Who I Am</h3>
             </div>
-            <div className="space-y-4 text-lg leading-relaxed">
-              <p>
-                My journey began in the world of Physics, where I learned to see patterns in chaos and solve complex equations. 
-                But I realized that while Physics explained the universe, technology was shaping it. That's when I made the leap 
-                into IT, starting with basic support and gradually climbing the ladder of complexity.
-              </p>
-              <p>
-                When I moved to Canada, I didn't just change countries - I reinvented myself. From customer service roles where 
-                I learned the human side of technology, to pursuing advanced cloud computing education, every step has been about 
-                resilience and adaptation. The transition from Physics → IT → Cloud & DevOps wasn't just a career change; it was 
-                a testament to my belief that learning never stops.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+            <p className="text-foreground/80">
+              Cloud & DevOps engineer with a physics backbone and hands-on delivery across AWS, Azure & GCP. I turn
+              business goals into resilient cloud systems.
+            </p>
+          </motion.div>
 
-        {/* 2. What Drives Me Every Day */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16"
-        >
-          <div className="bg-card rounded-xl p-8 shadow-lg border border-border">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center mr-4">
-                <Zap className="h-6 w-6 text-white" />
+          {/* What I value */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-card rounded-xl p-6 shadow-lg border border-border"
+          >
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-accent-500 rounded-full flex items-center justify-center mr-3">
+                <Zap className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-2xl font-bold">What Drives Me Every Day</h3>
+              <h3 className="text-xl font-bold">What I Value</h3>
             </div>
-            <div className="space-y-4 text-lg leading-relaxed">
-              <p>
-                I wake up every morning driven by an insatiable curiosity to understand how things work and how I can make them 
-                work better. Whether it's optimizing a cloud deployment or debugging a complex system, I find joy in the puzzle-solving 
-                process and the satisfaction of creating solutions that actually work.
-              </p>
-              <p>
-                My core values are simple but powerful: <strong>curiosity</strong> to explore new technologies, 
-                <strong> adaptability</strong> to embrace change, and <strong>teamwork</strong> to achieve more together than we ever could alone. 
-                I believe that the best engineers aren't just technically skilled - they're also great collaborators who lift others up.
-              </p>
-              <p className="text-primary-500 font-semibold italic">
-                "Every line of code I write is a promise to make someone's life easier tomorrow."
-              </p>
-            </div>
-          </div>
-        </motion.div>
+            <ul className="space-y-2 text-foreground/80 list-disc pl-5">
+              <li>Reliability first — design for failure, recover fast</li>
+              <li>Automation over repetition — IaC, pipelines, policies</li>
+              <li>Clarity — docs, dashboards, and measurable outcomes</li>
+            </ul>
+          </motion.div>
 
-        {/* 3. A Defining Challenge I Overcame */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-16"
-        >
-          <div className="bg-card rounded-xl p-8 shadow-lg border border-border">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
-                <Shield className="h-6 w-6 text-white" />
+          {/* What you get */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-card rounded-xl p-6 shadow-lg border border-border"
+          >
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                <Shield className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-2xl font-bold">A Defining Challenge I Overcame</h3>
+              <h3 className="text-xl font-bold">What You Get</h3>
             </div>
-            <div className="space-y-4 text-lg leading-relaxed">
-              <p>
-                When I first moved to Canada, I faced the classic immigrant challenge: my education and experience weren't immediately 
-                recognized. Instead of getting discouraged, I turned this into an opportunity to prove myself through action.
-              </p>
-              <p>
-                I started from the ground up in customer service, where I learned that technical skills are only half the battle. 
-                The real challenge was understanding people's needs and translating technical solutions into business value. 
-                Within months, I was exceeding targets and mentoring new team members. This experience taught me that resilience 
-                isn't about avoiding obstacles - it's about using them as stepping stones to become stronger.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+            <ul className="space-y-2 text-foreground/80 list-disc pl-5">
+              <li>Deploys in hours not days; pipelines with gated quality</li>
+              <li>30–60% faster releases; 20–40% cost optimizations</li>
+              <li>Observability wired-in: logs, metrics, SLOs</li>
+            </ul>
+          </motion.div>
+        </div>
 
         {/* 4. How I Work with People */}
         <motion.div

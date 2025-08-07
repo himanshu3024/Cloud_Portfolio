@@ -1,43 +1,25 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
 import { Download, Mail, Cloud } from 'lucide-react';
+import { TypeAnimation } from 'react-type-animation';
 import FloatingParticles from '../ui/FloatingParticles';
 import GlowingButton from '../ui/GlowingButton';
-
-const cloudPhrases = [
-  'Building the Future in the Cloud...',
-  3000,
-  'Turning Data into Dreams...',
-  3000,
-  'Securing Tomorrow, One Cloud at a Time...',
-  3000,
-  'Transforming Ideas into Scalable Realities...',
-  3000,
-  'From Cloud Learner to Cloud Creator...',
-  3000,
-  'Where Code Meets the Sky...',
-  3000,
-];
+// Minimal, premium hero
 
 export default function HeroSection() {
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Dark Glossy Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black to-zinc-950"></div>
-      
-      {/* Subtle Shine Effect */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      
-      {/* Minimal Ambient Light */}
-      <div className="absolute inset-0 bg-gradient-radial from-zinc-900/20 via-black to-black"></div>
-      
-      {/* Floating Particles with reduced opacity */}
-      <FloatingParticles count={20} />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Preserve dark glossy black theme via layered gradients */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-black to-zinc-950" />
+        <div className="absolute inset-0 bg-gradient-radial from-zinc-900/20 via-black to-black" />
+      </div>
+      {/* Ambient particles: ultra subtle */}
+      <FloatingParticles count={12} />
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      <div className="relative z-20 container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,52 +32,48 @@ export default function HeroSection() {
             transition={{ duration: 1 }}
             className="relative mb-6"
           >
-            {/* Subtle Glow Effect */}
-            <motion.div
-              animate={{ 
-                opacity: [0.1, 0.2, 0.1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute inset-0 bg-gradient-radial from-zinc-800/20 to-transparent blur-xl -z-10"
-            />
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight relative">
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-blue-100 to-gray-100 pb-2 [text-shadow:_0_1px_15px_rgb(255_255_255_/_20%)]">
-                HIMANSHU GANDHI
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-3 tracking-tight relative">
+              <span className="block pb-2 [text-shadow:_0_1px_15px_rgba(0,0,0,0.1)] dark:[text-shadow:_0_1px_15px_rgba(255,255,255,0.05)]">
+                HIMANSHU <span className="gradient-text">GANDHI</span>
               </span>
+              <span className="pointer-events-none absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/5 to-transparent [mask-image:linear-gradient(90deg,transparent,black,transparent)]" />
             </h1>
-            <h2 className="text-xl md:text-2xl text-zinc-400 font-medium tracking-wide">
-              Cloud Computing Student & Future Architect of the Digital Sky
-            </h2>
+            <div role="status" aria-live="polite" className="text-xl md:text-2xl font-medium tracking-wide text-foreground/80">
+              <TypeAnimation
+                sequence={[
+                  'Designing Cloud Solutions That Inspire Confidence.', 1800,
+                  '', 200,
+                  'Automating Infrastructure with Precision and Care.', 1800,
+                  '', 200,
+                  'Delivering Scalable, Secure, Cloud-Native Systems.', 1800,
+                  '', 200,
+                ]}
+                speed={46}
+                deletionSpeed={50}
+                repeat={Infinity}
+                cursor={true}
+                className="inline-block"
+              />
+            </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="max-w-2xl mx-auto mb-12"
-          >
-            <TypeAnimation
-              sequence={cloudPhrases}
-              wrapper="div"
-              speed={50}
-              repeat={Infinity}
-              className="text-lg md:text-xl text-blue-400 font-medium tracking-wide"
-            />
-          </motion.div>
+          <div className="max-w-2xl mx-auto mb-10" />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mx-auto w-fit glassmorphism p-3 rounded-2xl border border-white/10"
           >
             <GlowingButton
-              onClick={() => window.open('https://1drv.ms/b/c/5596fcdf5250aa05/EW0vn0bsGO9OiPqpT1JL200B1ETM1iyVtwh0wN9mRjjTEA?e=XyQREx', '_blank')}
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = encodeURI('/Himanshu Gandhi Resume B (2).pdf');
+                link.download = 'Himanshu_Gandhi_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+              }}
               className="inline-flex items-center gap-2 px-8 py-4 text-white rounded-xl font-semibold transition-all duration-300 bg-gradient-to-b from-zinc-800 to-zinc-900 border border-zinc-800 hover:from-zinc-700 hover:to-zinc-800 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.5)] backdrop-blur-sm"
             >
               <Cloud className="w-5 h-5 text-blue-400" />

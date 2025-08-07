@@ -42,7 +42,7 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed w-4 h-4 bg-primary-500 rounded-full mix-blend-difference pointer-events-none z-50"
+        className="fixed w-4 h-4 bg-primary-500 rounded-full mix-blend-difference pointer-events-none z-40"
         animate={{
           scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
           x: position.x - 8,
@@ -55,7 +55,7 @@ export default function CustomCursor() {
         }}
       />
       <motion.div
-        className="fixed w-8 h-8 border-2 border-primary-500 rounded-full mix-blend-difference pointer-events-none z-50"
+        className="fixed w-8 h-8 border-2 border-primary-500 rounded-full mix-blend-difference pointer-events-none z-40"
         animate={{
           scale: isClicking ? 1.2 : isHovering ? 1.8 : 1,
           x: position.x - 16,
