@@ -17,6 +17,61 @@ import {
 const experiences = [
   {
     id: 1,
+    title: 'ARC Program Leader',
+    company: 'City of Toronto',
+    location: 'Toronto, ON',
+    period: 'Sep 2025 - Present',
+    duration: '1 month',
+    description: 'Plan, organize and lead after-school recreation care (ARC) programmes for children ages 6-12, ensuring healthy child development principles and safety standards.',
+    achievements: [
+      'Plan, organize and lead after-school recreation care (ARC) programmes for children ages 6-12',
+      'Ensure healthy child development principles (PHCD / HIGH FIVE®) are embedded in activity design and delivery',
+      'Oversee program equipment, supplies, facilities, and ensure health & safety standards (including MSDS sheets) are met',
+      'Document attendance, follow safe arrival policy, and manage unaccounted absences (up to contacting authorities) in serious cases',
+      'Provide on-site direction and general guidance to staff (leaders, assistants) supporting the programme',
+      'Liaise with caregivers, staff, public and other divisions to respond to inquiries and coordinate the programme',
+      'Assist with administrative tasks (e.g., purchase of supplies, record-keeping, reporting incidents) to support programme operations'
+    ],
+    skills: ['Program Leadership', 'Child Development', 'Safety Management', 'Staff Supervision', 'Administrative Support', 'Community Liaison'],
+    icon: Users,
+    color: 'from-blue-500 to-cyan-500',
+    logo: '/images/city-of-toronto.png',
+    metrics: [
+      { label: 'Age Group', value: '6-12', icon: Users },
+      { label: 'Safety Standards', value: '100%', icon: CheckCircle },
+      { label: 'Program Coverage', value: 'Full', icon: Target },
+      { label: 'Staff Support', value: 'Multi-level', icon: TrendingUp }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Public Service Assistant',
+    company: 'Toronto Public Library',
+    location: 'Toronto, ON',
+    period: 'Aug 2025 - Present',
+    duration: '2 months',
+    description: 'Perform comprehensive library services including circulation duties, patron assistance, and program support while maintaining library policies and community access.',
+    achievements: [
+      'Perform circulation duties: check-in/out of materials, renewals, holds/reserves, shelve and maintain collections',
+      'Assist patrons with library enquiries (in-person and often at desk), providing direction, reader/advisory support, and support with library technology',
+      'Process payments, manage library accounts (fines/fees), maintain accurate records for library transactions',
+      'Perform shelving, shelf-reading, collection maintenance and support general upkeep of library environment',
+      'Assist with program/workshop support: set-up, take-down, event bookings, equipment set-up and user support',
+      'Maintain integrity of library policies (e.g., equity, access, confidentiality), ensure access to services for diverse communities'
+    ],
+    skills: ['Library Services', 'Customer Service', 'Collection Management', 'Technology Support', 'Program Coordination', 'Community Access'],
+    icon: Briefcase,
+    color: 'from-green-500 to-emerald-500',
+    logo: '/images/toronto-public-library.jpg',
+    metrics: [
+      { label: 'Daily Patrons', value: '100+', icon: Users },
+      { label: 'Service Accuracy', value: '99%', icon: CheckCircle },
+      { label: 'Collection Maintenance', value: 'Daily', icon: Target },
+      { label: 'Community Access', value: 'Full', icon: TrendingUp }
+    ]
+  },
+  {
+    id: 3,
     title: 'Customer Service Representative',
     company: 'Ets. Africainde',
     location: 'Toronto, ON',
@@ -32,7 +87,7 @@ const experiences = [
     ],
     skills: ['Customer Service', 'Sales', 'Training', 'Problem Solving', 'Communication'],
     icon: Users,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-purple-500 to-pink-500',
     metrics: [
       { label: 'Daily Customers', value: '50+', icon: Users },
       { label: 'CSAT Score', value: '90%+', icon: Star },
@@ -41,7 +96,7 @@ const experiences = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     title: 'IT Support Assistant',
     company: 'Rajasthan Computer Academy',
     location: 'Jaipur, India',
@@ -57,7 +112,7 @@ const experiences = [
     ],
     skills: ['Windows OS', 'System Administration', 'Hardware Support', 'Microsoft Office', 'User Management'],
     icon: Briefcase,
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-orange-500 to-red-500',
     metrics: [
       { label: 'Systems Supported', value: '100+', icon: Briefcase },
       { label: 'Issue Resolution', value: '95%', icon: CheckCircle },
@@ -162,8 +217,29 @@ export default function ExperienceSection() {
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
                 <div className="flex items-start space-x-4 mb-4 lg:mb-0">
-                  <div className={`p-3 rounded-lg bg-gradient-to-r ${experience.color}`}>
-                    <experience.icon className="h-6 w-6 text-white" />
+                  <div className="flex items-center space-x-3">
+                    {experience.logo ? (
+                      <div className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-border flex items-center justify-center">
+                        <img 
+                          src={experience.logo} 
+                          alt={`${experience.company} logo`}
+                          className="h-8 w-8 object-contain max-w-full max-h-full"
+                          onLoad={() => console.log(`Logo loaded successfully: ${experience.company}`)}
+                          onError={(e) => {
+                            console.error(`Failed to load logo for ${experience.company}:`, experience.logo);
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.nextElementSibling.style.display = 'block';
+                          }}
+                        />
+                        <div className={`p-3 rounded-lg bg-gradient-to-r ${experience.color} hidden`}>
+                          <experience.icon className="h-6 w-6 text-white" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={`p-3 rounded-lg bg-gradient-to-r ${experience.color}`}>
+                        <experience.icon className="h-6 w-6 text-white" />
+                      </div>
+                    )}
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-1">{experience.title}</h3>

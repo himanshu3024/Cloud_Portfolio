@@ -21,11 +21,32 @@ import {
 const certifications = [
   {
     id: 1,
+    name: 'Microsoft Azure Administrator Associate (AZ-104)',
+    issuer: 'Microsoft',
+    date: 'October 2025',
+    expiry: 'October 2026',
+    icon: Shield,
+    color: 'from-blue-500 to-cyan-500',
+    description: 'Microsoft Azure Administrator Associate certification demonstrating expertise in managing Azure resources, virtual machines, storage, and networking.',
+    skills: [
+      'Azure Resource Management',
+      'Virtual Machine Administration',
+      'Azure Storage Solutions',
+      'Virtual Networking',
+      'Identity & Access Management',
+      'Azure Monitoring & Security'
+    ],
+    badge: '/certifications/az-104.png',
+    verification: 'https://www.credly.com/badges/az-104',
+    status: 'Active'
+  },
+  {
+    id: 2,
     name: 'Google Cloud Cybersecurity Professional Certificate',
     issuer: 'Google',
     date: 'September 2024',
     icon: Shield,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-green-500 to-emerald-500',
     description: 'Comprehensive cybersecurity training covering cloud security best practices, threat detection, and incident response.',
     skills: [
       'Cloud Security Architecture',
@@ -39,12 +60,12 @@ const certifications = [
     status: 'Active'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Google Cloud Data Analytics Professional Certificate',
     issuer: 'Google',
     date: 'August 2024',
     icon: Database,
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-purple-500 to-pink-500',
     description: 'Advanced data analytics training focusing on big data processing, machine learning, and data visualization.',
     skills: [
       'BigQuery & Data Processing',
@@ -58,12 +79,12 @@ const certifications = [
     status: 'Active'
   },
   {
-    id: 3,
+    id: 4,
     name: 'Google Project Management Certificate',
     issuer: 'Google',
     date: 'August 2024',
     icon: FileText,
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-orange-500 to-red-500',
     description: 'Professional project management certification covering agile methodologies, stakeholder management, and project execution.',
     skills: [
       'Agile Methodologies',
@@ -77,12 +98,12 @@ const certifications = [
     status: 'Active'
   },
   {
-    id: 4,
+    id: 5,
     name: 'Google Data Analytics Professional Certificate',
     issuer: 'Google',
     date: 'July 2024',
     icon: TrendingUp,
-    color: 'from-orange-500 to-red-500',
+    color: 'from-indigo-500 to-purple-500',
     description: 'Foundational data analytics certification covering data collection, analysis, and visualization techniques.',
     skills: [
       'Data Collection & Cleaning',
@@ -150,7 +171,7 @@ export default function CertificationsSection() {
             Professional <span className="gradient-text">Certifications</span>
           </h2>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            Industry-recognized certifications from Google demonstrating expertise in cloud computing, 
+            Industry-recognized certifications from Microsoft and Google demonstrating expertise in cloud computing, 
             cybersecurity, data analytics, and project management.
           </p>
         </motion.div>
@@ -266,6 +287,12 @@ export default function CertificationsSection() {
                   <div className="flex items-center space-x-2 text-sm text-foreground/60">
                     <Calendar className="h-4 w-4" />
                     <span>{cert.date}</span>
+                    {cert.expiry && (
+                      <>
+                        <span>•</span>
+                        <span>Expires: {cert.expiry}</span>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -375,8 +402,8 @@ export default function CertificationsSection() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary-500 mb-2">4</div>
-              <div className="text-sm text-foreground/60">Google Certifications</div>
+              <div className="text-3xl font-bold text-primary-500 mb-2">5</div>
+              <div className="text-sm text-foreground/60">Total Certifications</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-accent-500 mb-2">100%</div>
