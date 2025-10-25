@@ -228,7 +228,10 @@ export default function ExperienceSection() {
                           onError={(e) => {
                             console.error(`Failed to load logo for ${experience.company}:`, experience.logo);
                             e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling.style.display = 'block';
+                            const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                            if (nextElement) {
+                              nextElement.style.display = 'block';
+                            }
                           }}
                         />
                         <div className={`p-3 rounded-lg bg-gradient-to-r ${experience.color} hidden`}>
