@@ -21,6 +21,48 @@ import {
 const certifications = [
   {
     id: 1,
+    name: 'Microsoft 365 Certified: Administrator Expert (MS-102)',
+    issuer: 'Microsoft',
+    date: 'October 2025',
+    expiry: 'October 2026',
+    icon: Shield,
+    color: 'from-indigo-600 to-purple-600',
+    description: 'Expert-level certification demonstrating advanced skills in deploying and managing Microsoft 365 tenants, implementing identity and access management, and administering cloud and hybrid environments.',
+    skills: [
+      'Microsoft 365 Tenant Management',
+      'Microsoft Entra Identity & Access',
+      'Security & Threat Management',
+      'Microsoft 365 Defender',
+      'Compliance Management',
+      'Microsoft Purview'
+    ],
+    badge: '/certifications/ms-102.png',
+    verification: 'https://learn.microsoft.com/api/credentials/share/en-us/HimanshuGandhi-7989/1E0236DD3F7F36A8?sharingId=1324DBCFB552537A',
+    status: 'Active'
+  },
+  {
+    id: 2,
+    name: 'Microsoft Certified: Identity and Access Administrator Associate (SC-300)',
+    issuer: 'Microsoft',
+    date: 'October 2025',
+    expiry: 'October 2026',
+    icon: Shield,
+    color: 'from-cyan-500 to-blue-600',
+    description: 'Professional certification for designing, implementing, and operating identity and access management systems using Microsoft Entra ID, focusing on Zero Trust security principles.',
+    skills: [
+      'Microsoft Entra ID Management',
+      'Authentication & Authorization',
+      'Conditional Access Policies',
+      'Identity Governance',
+      'Hybrid Identity Solutions',
+      'Zero Trust Implementation'
+    ],
+    badge: '/certifications/sc-300.png',
+    verification: 'https://learn.microsoft.com/api/credentials/share/en-us/HimanshuGandhi-7989/1D7394EC01189647?sharingId=1324DBCFB552537A',
+    status: 'Active'
+  },
+  {
+    id: 3,
     name: 'Microsoft Azure Administrator Associate (AZ-104)',
     issuer: 'Microsoft',
     date: 'October 2025',
@@ -37,11 +79,11 @@ const certifications = [
       'Azure Monitoring & Security'
     ],
     badge: '/certifications/az-104.png',
-    verification: 'https://www.credly.com/badges/az-104',
+    verification: 'https://learn.microsoft.com/api/credentials/share/en-us/HimanshuGandhi-7989/506493B6ECBC4DE8?sharingId=1324DBCFB552537A',
     status: 'Active'
   },
   {
-    id: 2,
+    id: 4,
     name: 'Google Cloud Cybersecurity Professional Certificate',
     issuer: 'Google',
     date: 'September 2024',
@@ -60,7 +102,7 @@ const certifications = [
     status: 'Active'
   },
   {
-    id: 3,
+    id: 5,
     name: 'Google Cloud Data Analytics Professional Certificate',
     issuer: 'Google',
     date: 'August 2024',
@@ -79,7 +121,7 @@ const certifications = [
     status: 'Active'
   },
   {
-    id: 4,
+    id: 6,
     name: 'Google Project Management Certificate',
     issuer: 'Google',
     date: 'August 2024',
@@ -98,7 +140,7 @@ const certifications = [
     status: 'Active'
   },
   {
-    id: 5,
+    id: 7,
     name: 'Google Data Analytics Professional Certificate',
     issuer: 'Google',
     date: 'July 2024',

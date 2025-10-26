@@ -150,7 +150,7 @@ export default function HeroSection() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const link = document.createElement('a');
-                  link.href = encodeURI('/Himanshu Gandhi Resume B (2).pdf');
+                  link.href = encodeURI('/Himanshu Gandhi Resume.pdf');
                   link.download = 'Himanshu_Gandhi_Resume.pdf';
                   document.body.appendChild(link);
                   link.click();
