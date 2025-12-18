@@ -239,11 +239,11 @@ export default function SkillsSection() {
                         <div className="text-xs text-foreground/60">{category.title}</div>
                       </div>
                     </div>
-                    <span className={`text-[10px] px-2 py-1 rounded-full self-start ${skill.level === 'Advanced'
-                      ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                    <span className={`text-[10px] px-2.5 py-1 rounded-full self-start font-bold backdrop-blur-md shadow-sm border ${skill.level === 'Advanced'
+                      ? 'bg-green-500/30 dark:bg-green-500/40 text-green-700 dark:text-green-300 border-green-500/50'
                       : skill.level === 'Intermediate'
-                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                        : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
+                        ? 'bg-blue-500/30 dark:bg-blue-500/40 text-blue-700 dark:text-blue-300 border-blue-500/50'
+                        : 'bg-yellow-500/30 dark:bg-yellow-500/40 text-yellow-700 dark:text-yellow-300 border-yellow-500/50'
                       }`}>
                       {skill.level}
                     </span>
@@ -339,7 +339,7 @@ export default function SkillsSection() {
                         {getRelatedSkills(selectedSkill).map((skill) => (
                           <span
                             key={skill.name}
-                            className="px-3 py-1 bg-secondary/50 rounded-full text-sm"
+                            className="px-3 py-1 bg-white/40 dark:bg-white/10 border border-white/20 dark:border-white/10 rounded-full text-sm font-bold backdrop-blur-md shadow-sm text-foreground/80 dark:text-foreground/90"
                           >
                             {skill.name}
                           </span>
@@ -356,7 +356,7 @@ export default function SkillsSection() {
                         {selectedSkill.projects.map((project) => (
                           <span
                             key={project}
-                            className="px-3 py-1 bg-primary-500/10 text-primary-500 rounded-full text-sm"
+                            className="px-3 py-1 bg-primary-500/30 dark:bg-primary-500/40 text-primary-700 dark:text-primary-300 border border-primary-500/50 rounded-full text-sm font-bold backdrop-blur-md shadow-sm"
                           >
                             {project}
                           </span>

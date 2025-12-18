@@ -5,7 +5,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 export default function SkillsPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <ScrollIndicator />
 
       <Suspense fallback={<LoadingSpinner />}>

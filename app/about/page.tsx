@@ -13,7 +13,7 @@ const AboutSection = dynamic(() => import('@/components/sections/AboutSection'),
 export default function AboutPage() {
   return (
     <ErrorBoundary>
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-transparent">
         <ScrollIndicator />
         <AboutSection />
       </main>

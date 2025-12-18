@@ -225,16 +225,20 @@ export default function ExperienceSection() {
                     <h3 className="text-2xl font-bold mb-1 tracking-tight">{experience.title}</h3>
                     <div className="flex items-center space-x-4 text-foreground/70">
                       <span className="font-semibold text-primary-500">{experience.company}</span>
-                      <div className="flex items-center space-x-1 text-sm bg-secondary/30 px-3 py-1 rounded-full">
-                        <MapPin className="h-3 w-3" />
-                        <span>{experience.location}</span>
+                      <div className="flex items-center space-x-1 text-sm bg-white/40 dark:bg-white/10 px-3 py-1 rounded-full border border-white/20 dark:border-white/10 font-bold backdrop-blur-md shadow-sm">
+                        <MapPin className="h-3 w-3 text-primary-600 dark:text-primary-400" />
+                        <span className="text-foreground/80 dark:text-foreground/90">{experience.location}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-medium text-foreground/80 mb-1 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block">{experience.period}</div>
-                  <div className="text-sm font-bold text-accent-500 mt-1">{experience.duration}</div>
+                  <div className="text-sm font-medium text-foreground/80 mb-1 px-4 py-1.5 rounded-full bg-white/40 dark:bg-white/10 border border-white/20 dark:border-white/10 inline-block backdrop-blur-md shadow-sm">{experience.period}</div>
+                  <div className="flex justify-end">
+                    <div className="text-[11px] font-bold px-3 py-1 rounded-full bg-accent-500/30 dark:bg-accent-500/40 text-accent-700 dark:text-accent-300 border border-accent-500/50 backdrop-blur-md shadow-sm">
+                      {experience.duration}
+                    </div>
+                  </div>
                 </div>
               </div>
 

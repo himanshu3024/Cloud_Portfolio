@@ -348,13 +348,13 @@ function CertificationCard({ cert, index, inView }: CertificationCardProps) {
               transition={{ delay: index * 0.1 + 0.4, type: "spring" }}
               className="relative"
             >
-              <div className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500/20 to-green-500/20 border border-emerald-500/30 flex items-center space-x-1.5">
+              <div className="px-3 py-1.5 rounded-full bg-emerald-500/30 dark:bg-emerald-500/40 border border-emerald-500/50 flex items-center space-x-1.5 backdrop-blur-md shadow-sm">
                 <motion.div
-                  className="h-2 w-2 rounded-full bg-emerald-400"
+                  className="h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
                 />
-                <span className="text-xs font-semibold text-emerald-400">
+                <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300">
                   {cert.status}
                 </span>
               </div>
@@ -439,7 +439,7 @@ function CertificationCard({ cert, index, inView }: CertificationCardProps) {
                   className="group/skill relative"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-lg blur-sm opacity-0 group-hover/skill:opacity-100 transition-opacity" />
-                  <span className="relative text-xs px-3 py-1.5 bg-secondary/50 backdrop-blur-sm rounded-lg text-foreground/80 font-medium border border-border/50 block transition-colors group-hover/skill:border-primary-500/50">
+                  <span className="relative text-xs px-3 py-1.5 bg-white/40 dark:bg-white/10 backdrop-blur-md rounded-lg text-foreground/80 dark:text-foreground/90 font-bold border border-white/20 dark:border-white/10 block transition-colors group-hover/skill:border-primary-500/50 shadow-sm">
                     {skill}
                   </span>
                 </motion.div>
@@ -528,10 +528,10 @@ export default function CertificationsSection() {
             initial={{ scale: 0 }}
             animate={inView ? { scale: 1 } : {}}
             transition={{ duration: 0.5, type: "spring" }}
-            className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary-500/10 border border-primary-500/20 mb-6"
+            className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-primary-500/20 dark:bg-primary-500/30 border border-primary-500/50 mb-6 backdrop-blur-md shadow-sm"
           >
-            <Award className="h-5 w-5 text-primary-500" />
-            <span className="text-sm font-semibold text-primary-500">Professional Credentials</span>
+            <Award className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+            <span className="text-sm font-bold text-primary-700 dark:text-primary-300">Professional Credentials</span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

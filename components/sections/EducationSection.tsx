@@ -168,13 +168,13 @@ export default function EducationSection() {
                                 <div className="text-right">
                                     <div className="text-sm font-medium text-foreground/80 mb-1 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block">{edu.period}</div>
                                     <div className="flex items-center justify-end space-x-2 mt-2">
-                                        <span className={`text-xs px-3 py-1 rounded-full font-semibold ${edu.status === 'In Progress'
-                                            ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                                            : 'bg-green-500/20 text-green-400 border border-green-500/30'
+                                        <span className={`text-xs px-3 py-1.5 rounded-full font-bold backdrop-blur-md shadow-sm border ${edu.status === 'In Progress'
+                                            ? 'bg-blue-500/30 dark:bg-blue-500/40 text-blue-700 dark:text-blue-300 border-blue-500/50'
+                                            : 'bg-green-500/30 dark:bg-green-500/40 text-green-700 dark:text-green-300 border-green-500/50'
                                             }`}>
                                             {edu.status}
                                         </span>
-                                        <span className="text-xs px-3 py-1 rounded-full bg-primary-500/20 text-primary-400 border border-primary-500/30 font-semibold">
+                                        <span className="text-xs px-3 py-1.5 rounded-full bg-primary-500/30 dark:bg-primary-500/40 text-primary-700 dark:text-primary-300 border border-primary-500/50 font-bold backdrop-blur-md shadow-sm">
                                             {edu.type}
                                         </span>
                                     </div>

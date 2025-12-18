@@ -19,6 +19,66 @@ import {
 
 const projects = [
   {
+    id: 9,
+    title: 'Securing and Monitoring Resources with AWS',
+    description: 'A comprehensive cloud security project documenting a defense-in-depth implementation for a financial organization. Covers S3 hardening, VPC network defense with AWS Network Firewall, data-at-rest encryption with KMS, and automated compliance monitoring.',
+    image: '/images/Securing and Monitoring/Completion Architecture.png',
+    category: 'Security',
+    technologies: ['AWS', 'KMS', 'VPC', 'Network Firewall', 'S3', 'CloudTrail', 'CloudWatch', 'AWS Config', 'Secrets Manager', 'Athena'],
+    github: 'https://github.com/himanshu3024/Securing-and-Monitoring-Resources-with-AWS',
+    live: 'https://github.com/himanshu3024/Securing-and-Monitoring-Resources-with-AWS',
+    features: [
+      'Multi-layer S3 Security (Bucket Policies, Logging, Inventory)',
+      'Harden VPC with NACLs, SGs, and Network Firewall',
+      'Customer Managed Keys (CMK) for encryption at rest',
+      'Automated remediation of non-compliant resources',
+      'SSH attack detection and alerting via CloudWatch',
+      'Log analysis and auditing with Athena & CloudTrail'
+    ],
+    icon: Shield,
+    color: 'from-red-600 to-rose-600'
+  },
+  {
+    id: 8,
+    title: 'AWS Cloud Architecting Capstone Project',
+    description: 'A professional-grade cloud architecture project documented from start to finish. Re-architected a legacy monolithic application into a highly available, scalable, and secure distributed system using AWS best practices.',
+    image: '/images/AWS Capstone Project/Initial Architecture.png',
+    category: 'Cloud',
+    technologies: ['AWS', 'VPC', 'EC2', 'RDS', 'ALB', 'ASG', 'Secrets Manager', 'PHP', 'MySQL', 'Linux'],
+    github: 'https://github.com/himanshu3024/AWS-Cloud-Architecting-Capstone-Project',
+    live: 'https://github.com/himanshu3024/AWS-Cloud-Architecting-Capstone-Project',
+    features: [
+      'Multi-tier VPC Network (Public & Private)',
+      'High Availability across Availability Zones',
+      'Auto Scaling for dynamic demand',
+      'Database decoupling with Amazon RDS',
+      'Secure credential management (Secrets Manager)',
+      'Automated server blueprints (Launch Templates)'
+    ],
+    icon: Cloud,
+    color: 'from-orange-600 to-amber-600'
+  },
+  {
+    id: 7,
+    title: 'Café Cloud: The Evolving Architecture',
+    description: 'A comprehensive cloud engineering project demonstrating the end-to-end migration and evolution of a business application on AWS. From a static S3 site to a highly available, serverless architecture using EC2, RDS, VPC, ASG, and Lambda.',
+    image: '/images/20-lab-mod-14-challenge-final-architecture.png',
+    category: 'Cloud',
+    technologies: ['AWS', 'EC2', 'S3', 'RDS', 'Lambda', 'CloudFormation', 'Python', 'PHP', 'MariaDB', 'VPC', 'ELB', 'ASG', 'SNS', 'EventBridge'],
+    github: 'https://github.com/himanshu3024/Cloud-Caf-Architecture-Project/',
+    live: 'https://github.com/himanshu3024/Cloud-Caf-Architecture-Project/',
+    features: [
+      'Multi-phase migration (S3 to Lambda)',
+      'High Availability with ALB & ASG',
+      'Database decoupling with Amazon RDS',
+      'Network hardening & VPC isolation',
+      'Infrastructure as Code (CloudFormation)',
+      'Serverless reporting with Lambda & SNS'
+    ],
+    icon: Cloud,
+    color: 'from-orange-500 to-amber-500'
+  },
+  {
     id: 1,
     title: 'Azure Terraform VM',
     description: 'A DevOps project that provisions a complete Azure cloud infrastructure using Terraform and configures an Ubuntu 20.04 LTS virtual machine with an NGINX web server using Ansible. Features automated CI/CD with GitHub Actions, secure SSH key authentication, network security groups, and cost optimization strategies.',
@@ -73,60 +133,6 @@ const projects = [
     ],
     icon: Zap,
     color: 'from-orange-500 to-red-500'
-  },
-  {
-    id: 4,
-    title: 'Kubernetes Cluster Management',
-    description: 'Deployed and managed containerized applications using Kubernetes with monitoring and logging.',
-    image: '/projects/kubernetes-cluster.jpg',
-    category: 'DevOps',
-    technologies: ['Kubernetes', 'Docker', 'Helm', 'Prometheus', 'Grafana'],
-    github: 'https://github.com/himanshu-gandhi/k8s-cluster',
-    live: null,
-    features: [
-      'Container orchestration',
-      'Auto-scaling capabilities',
-      'Monitoring and alerting',
-      'Load balancing'
-    ],
-    icon: Database,
-    color: 'from-green-500 to-emerald-500'
-  },
-  {
-    id: 5,
-    title: 'Cloud Security Implementation',
-    description: 'Implemented comprehensive security measures across cloud platforms including IAM, RBAC, and monitoring.',
-    image: '/projects/cloud-security.jpg',
-    category: 'Security',
-    technologies: ['IAM', 'RBAC', 'CloudWatch', 'Azure Monitor', 'Security Groups'],
-    github: 'https://github.com/himanshu-gandhi/cloud-security',
-    live: null,
-    features: [
-      'Identity and Access Management',
-      'Role-based access control',
-      'Security monitoring',
-      'Compliance frameworks'
-    ],
-    icon: Shield,
-    color: 'from-red-500 to-pink-500'
-  },
-  {
-    id: 6,
-    title: 'CI/CD Pipeline Automation',
-    description: 'Built comprehensive CI/CD pipelines using Jenkins and GitHub Actions for automated testing and deployment.',
-    image: '/projects/cicd-pipeline.jpg',
-    category: 'DevOps',
-    technologies: ['Jenkins', 'GitHub Actions', 'Docker', 'Python', 'Bash'],
-    github: 'https://github.com/himanshu-gandhi/cicd-pipeline',
-    live: null,
-    features: [
-      'Automated testing',
-      'Continuous deployment',
-      'Pipeline orchestration',
-      'Quality gates'
-    ],
-    icon: Zap,
-    color: 'from-indigo-500 to-purple-500'
   }
 ];
 
@@ -300,11 +306,11 @@ export default function ProjectsSection() {
                 {/* Project Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className={`text-xs px-3 py-1.5 rounded-full backdrop-blur-md border ${project.category === 'Cloud'
-                      ? 'bg-blue-500/10 border-blue-500/20 text-blue-300'
+                    <span className={`text-xs px-3 py-1.5 rounded-full font-bold backdrop-blur-md shadow-sm border ${project.category === 'Cloud'
+                      ? 'bg-blue-500/30 dark:bg-blue-500/40 text-blue-700 dark:text-blue-300 border-blue-500/50'
                       : project.category === 'DevOps'
-                        ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
-                        : 'bg-red-500/10 border-red-500/20 text-red-300'
+                        ? 'bg-purple-500/30 dark:bg-purple-500/40 text-purple-700 dark:text-purple-300 border-purple-500/50'
+                        : 'bg-red-500/30 dark:bg-red-500/40 text-red-700 dark:text-red-300 border-red-500/50'
                       }`}>
                       {project.category}
                     </span>
@@ -324,7 +330,7 @@ export default function ProjectsSection() {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="text-[10px] px-2 py-1 bg-white/5 border border-white/10 rounded-full text-foreground/70"
+                        className="text-[10px] px-3 py-1 bg-white/40 dark:bg-white/10 border border-white/20 dark:border-white/10 rounded-full text-foreground/80 dark:text-foreground/90 font-medium backdrop-blur-sm shadow-sm"
                       >
                         {tech}
                       </span>
@@ -367,7 +373,7 @@ export default function ProjectsSection() {
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+                className="bg-white/80 dark:bg-black/60 backdrop-blur-2xl border border-black/5 dark:border-white/10 rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="p-8">
@@ -376,24 +382,24 @@ export default function ProjectsSection() {
                       <div className={`p-2.5 rounded-xl bg-gradient-to-r ${selectedProject.color}`}>
                         <selectedProject.icon className="h-6 w-6 text-white" />
                       </div>
-                      <span className={`text-xs px-3 py-1.5 rounded-full border ${selectedProject.category === 'Cloud'
-                        ? 'bg-blue-500/10 border-blue-500/20 text-blue-300'
+                      <span className={`text-xs px-3 py-1.5 rounded-full border shadow-sm backdrop-blur-md ${selectedProject.category === 'Cloud'
+                        ? 'bg-blue-500/30 dark:bg-blue-500/40 text-blue-700 dark:text-blue-300 border-blue-500/30'
                         : selectedProject.category === 'DevOps'
-                          ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
-                          : 'bg-red-500/10 border-red-500/20 text-red-300'
+                          ? 'bg-purple-500/30 dark:bg-purple-500/40 text-purple-700 dark:text-purple-300 border-purple-500/30'
+                          : 'bg-red-500/30 dark:bg-red-500/40 text-red-700 dark:text-red-300 border-red-500/30'
                         }`}>
                         {selectedProject.category}
                       </span>
                     </div>
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-foreground/60 hover:text-foreground transition-colors duration-200"
+                      className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-foreground/60 hover:text-foreground transition-colors duration-200"
                     >
                       ✕
                     </button>
                   </div>
 
-                  <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">{selectedProject.title}</h3>
+                  <h3 className="text-3xl font-bold mb-4 text-foreground">{selectedProject.title}</h3>
 
                   {/* Project Image in Modal */}
                   <div className="relative h-64 mb-8 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
@@ -409,12 +415,12 @@ export default function ProjectsSection() {
                   <p className="text-lg text-foreground/80 mb-8 leading-relaxed">{selectedProject.description}</p>
 
                   <div className="grid md:grid-cols-2 gap-4 mb-8">
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                      <h5 className="font-semibold mb-2 text-primary-400">Architecture</h5>
+                    <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl p-5">
+                      <h5 className="font-semibold mb-2 text-primary-500 dark:text-primary-400">Architecture</h5>
                       <p className="text-sm text-foreground/70">Layered: client → API → infra. Separation of concerns with IaC for repeatability.</p>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                      <h5 className="font-semibold mb-2 text-primary-400">Cost Notes</h5>
+                    <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl p-5">
+                      <h5 className="font-semibold mb-2 text-primary-500 dark:text-primary-400">Cost Notes</h5>
                       <p className="text-sm text-foreground/70">Right-size instances; use spot/preemptible; storage lifecycle rules; env-based scaling.</p>
                     </div>
                   </div>
@@ -438,7 +444,7 @@ export default function ProjectsSection() {
                         {selectedProject.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-sm text-foreground/70"
+                            className="px-4 py-1.5 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full text-sm text-foreground/70"
                           >
                             {tech}
                           </span>
@@ -466,7 +472,7 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="flex items-center space-x-3 px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 text-foreground rounded-full font-bold transition-all duration-300 shadow-sm"
+                          className="flex items-center space-x-3 px-8 py-4 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground rounded-full font-bold transition-all duration-300 shadow-sm"
                         >
                           <ExternalLink className="h-5 w-5" />
                           <span>Launch Demo</span>
