@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  Briefcase, 
-  Award, 
-  Users, 
-  Target, 
+import {
+  Briefcase,
+  Award,
+  Users,
+  Target,
   TrendingUp,
   Star,
   Calendar,
@@ -14,14 +14,47 @@ import {
   CheckCircle
 } from 'lucide-react';
 
+// Function to calculate duration between two dates
+function calculateDuration(startDate: string, endDate?: string): string {
+  const monthNames: { [key: string]: number } = {
+    'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+    'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+  };
+
+  const [startMonth, startYear] = startDate.split(' ');
+  const start = new Date(parseInt(startYear), monthNames[startMonth], 1);
+
+  let end: Date;
+  if (!endDate || endDate === 'Present') {
+    end = new Date(); // Current date
+  } else {
+    const [endMonth, endYear] = endDate.split(' ');
+    end = new Date(parseInt(endYear), monthNames[endMonth], 1);
+  }
+
+  const totalMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1;
+
+  if (totalMonths < 1) return '< 1 month';
+  if (totalMonths === 1) return '1 month';
+  if (totalMonths < 12) return `${totalMonths} months`;
+
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  if (months === 0) return years === 1 ? '1 year' : `${years} years`;
+  return years === 1 ? `1 year ${months} mo` : `${years} years ${months} mo`;
+}
+
 const experiences = [
   {
     id: 1,
     title: 'ARC Program Leader',
     company: 'City of Toronto',
     location: 'Toronto, ON',
-    period: 'Sep 2025 - Present',
-    duration: '1 month',
+    startDate: 'Sep 2025',
+    endDate: 'Present',
+    get period() { return `${this.startDate} - ${this.endDate}`; },
+    get duration() { return calculateDuration(this.startDate, this.endDate); },
     description: 'Plan, organize and lead after-school recreation care (ARC) programmes for children ages 6-12, ensuring healthy child development principles and safety standards.',
     achievements: [
       'Plan, organize and lead after-school recreation care (ARC) programmes for children ages 6-12',
@@ -48,8 +81,10 @@ const experiences = [
     title: 'Public Service Assistant',
     company: 'Toronto Public Library',
     location: 'Toronto, ON',
-    period: 'Aug 2025 - Present',
-    duration: '2 months',
+    startDate: 'Aug 2025',
+    endDate: 'Present',
+    get period() { return `${this.startDate} - ${this.endDate}`; },
+    get duration() { return calculateDuration(this.startDate, this.endDate); },
     description: 'Perform comprehensive library services including circulation duties, patron assistance, and program support while maintaining library policies and community access.',
     achievements: [
       'Perform circulation duties: check-in/out of materials, renewals, holds/reserves, shelve and maintain collections',
@@ -122,64 +157,6 @@ const experiences = [
   }
 ];
 
-const education = [
-  {
-    id: 1,
-    title: 'Cloud Computing Technologies',
-    institution: 'George Brown College',
-    location: 'Toronto, ON',
-    period: 'May 2025 - Apr 2026',
-    type: 'Post Graduate Certificate',
-    description: 'Comprehensive program covering Microsoft 365, Azure, AWS, Linux, Windows Server, and Networking Fundamentals.',
-    courses: [
-      'Microsoft 365 Administration',
-      'Microsoft Azure (Admin, Architect, Security)',
-      'AWS (Practitioner, Solutions Architect, Security)',
-      'Advanced Linux Administration',
-      'Windows Server Management',
-      'Networking Fundamentals'
-    ],
-    icon: Award,
-    color: 'from-purple-500 to-pink-500'
-  },
-  {
-    id: 2,
-    title: 'Project Management',
-    institution: 'Fleming College',
-    location: 'Toronto, ON',
-    period: 'May 2024 - Dec 2024',
-    type: 'Post Graduate Certificate',
-    description: 'Achieved Academic Excellence Bursary ($1,000 CAD) for outstanding performance with 93% score in Semester 1.',
-    courses: [
-      'Project Planning and Execution',
-      'Risk Management',
-      'Stakeholder Communication',
-      'Agile Methodologies',
-      'Project Monitoring and Control'
-    ],
-    icon: Award,
-    color: 'from-orange-500 to-red-500'
-  },
-  {
-    id: 3,
-    title: 'Bachelor of Science',
-    institution: 'University of Rajasthan',
-    location: 'Jaipur, India',
-    period: 'May 2015 - Jun 2019',
-    type: 'Bachelor\'s Degree',
-    description: 'Physics, Chemistry & Mathematics with strong analytical and problem-solving foundation.',
-    courses: [
-      'Physics',
-      'Chemistry',
-      'Mathematics',
-      'Analytical Methods',
-      'Scientific Computing'
-    ],
-    icon: Award,
-    color: 'from-indigo-500 to-purple-500'
-  }
-];
-
 export default function ExperienceSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -187,8 +164,8 @@ export default function ExperienceSection() {
   });
 
   return (
-    <section id="experience" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-20 bg-transparent relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -200,7 +177,7 @@ export default function ExperienceSection() {
             Work <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            A diverse professional journey combining customer service excellence with technical expertise, 
+            A diverse professional journey combining customer service excellence with technical expertise,
             demonstrating strong problem-solving abilities and continuous learning mindset.
           </p>
         </motion.div>
@@ -213,17 +190,17 @@ export default function ExperienceSection() {
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-card rounded-xl p-8 shadow-lg border border-border"
+              className="glass-card rounded-[2.5rem] p-8 hover:shadow-[0_20px_40px_-5px_rgba(0,0,0,0.1)] transition-all duration-500"
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
                 <div className="flex items-start space-x-4 mb-4 lg:mb-0">
                   <div className="flex items-center space-x-3">
                     {experience.logo ? (
-                      <div className="p-2 rounded-lg bg-white dark:bg-gray-800 border border-border flex items-center justify-center">
-                        <img 
-                          src={experience.logo} 
+                      <div className="p-2 rounded-2xl bg-white dark:bg-white/10 border border-border/50 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                        <img
+                          src={experience.logo}
                           alt={`${experience.company} logo`}
-                          className="h-8 w-8 object-contain max-w-full max-h-full"
+                          className="h-10 w-10 object-contain rounded-xl"
                           onLoad={() => console.log(`Logo loaded successfully: ${experience.company}`)}
                           onError={(e) => {
                             console.error(`Failed to load logo for ${experience.company}:`, experience.logo);
@@ -234,77 +211,77 @@ export default function ExperienceSection() {
                             }
                           }}
                         />
-                        <div className={`p-3 rounded-lg bg-gradient-to-r ${experience.color} hidden`}>
+                        <div className={`p-4 rounded-xl bg-gradient-to-tr ${experience.color} hidden shadow-lg`}>
                           <experience.icon className="h-6 w-6 text-white" />
                         </div>
                       </div>
                     ) : (
-                      <div className={`p-3 rounded-lg bg-gradient-to-r ${experience.color}`}>
+                      <div className={`p-4 rounded-xl bg-gradient-to-tr ${experience.color} shadow-lg`}>
                         <experience.icon className="h-6 w-6 text-white" />
                       </div>
                     )}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-1">{experience.title}</h3>
+                    <h3 className="text-2xl font-bold mb-1 tracking-tight">{experience.title}</h3>
                     <div className="flex items-center space-x-4 text-foreground/70">
                       <span className="font-semibold text-primary-500">{experience.company}</span>
-                      <div className="flex items-center space-x-1">
-                        <MapPin className="h-4 w-4" />
+                      <div className="flex items-center space-x-1 text-sm bg-secondary/30 px-3 py-1 rounded-full">
+                        <MapPin className="h-3 w-3" />
                         <span>{experience.location}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm text-foreground/60 mb-1">{experience.period}</div>
-                  <div className="text-sm font-semibold text-accent-500">{experience.duration}</div>
+                  <div className="text-sm font-medium text-foreground/80 mb-1 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 inline-block">{experience.period}</div>
+                  <div className="text-sm font-bold text-accent-500 mt-1">{experience.duration}</div>
                 </div>
               </div>
 
-              <p className="text-foreground/70 mb-6">{experience.description}</p>
+              <p className="text-lg text-foreground/80 mb-8 leading-relaxed max-w-4xl">{experience.description}</p>
 
               {/* Metrics */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 {experience.metrics.map((metric, metricIndex) => (
                   <motion.div
                     key={metric.label}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.5, delay: (index * 0.2) + (metricIndex * 0.1) }}
-                    className="text-center p-3 bg-secondary/30 rounded-lg"
+                    className="flex flex-col items-center justify-center p-4 bg-white/5 dark:bg-white/5 rounded-2xl border border-white/10"
                   >
-                    <metric.icon className="h-5 w-5 text-primary-500 mx-auto mb-1" />
-                    <div className="text-lg font-bold text-primary-600">{metric.value}</div>
-                    <div className="text-xs text-foreground/60">{metric.label}</div>
+                    <metric.icon className="h-5 w-5 text-primary-500 mb-2" />
+                    <div className="text-xl font-bold text-foreground">{metric.value}</div>
+                    <div className="text-xs text-foreground/60 font-medium uppercase tracking-wider">{metric.label}</div>
                   </motion.div>
                 ))}
               </div>
 
               {/* Achievements */}
-              <div className="mb-6">
-                <h4 className="font-semibold text-lg mb-3 flex items-center space-x-2">
+              <div className="mb-8">
+                <h4 className="font-bold text-lg mb-4 flex items-center space-x-2">
                   <CheckCircle className="h-5 w-5 text-accent-500" />
                   <span>Key Achievements</span>
                 </h4>
-                <ul className="space-y-2">
+                <div className="grid md:grid-cols-1 gap-3">
                   {experience.achievements.map((achievement, achievementIndex) => (
-                    <motion.li
+                    <motion.div
                       key={achievementIndex}
                       initial={{ opacity: 0, x: -20 }}
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.3, delay: (index * 0.2) + (achievementIndex * 0.1) }}
-                      className="flex items-start space-x-2"
+                      className="flex items-start space-x-3 p-3 rounded-xl hover:bg-white/5 transition-colors duration-200"
                     >
-                      <div className="w-2 h-2 bg-accent-500 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-foreground/70">{achievement}</span>
-                    </motion.li>
+                      <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mt-2.5 flex-shrink-0 shadow-[0_0_8px_rgba(0,0,0,0.2)]" />
+                      <span className="text-foreground/80 leading-relaxed">{achievement}</span>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
 
               {/* Skills */}
               <div>
-                <h4 className="font-semibold text-lg mb-3">Skills Applied</h4>
+                <h4 className="font-bold text-lg mb-4">Skills Applied</h4>
                 <div className="flex flex-wrap gap-2">
                   {experience.skills.map((skill, skillIndex) => (
                     <motion.span
@@ -312,78 +289,12 @@ export default function ExperienceSection() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.3, delay: (index * 0.2) + (skillIndex * 0.05) }}
-                      className="px-3 py-1 bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 rounded-full text-sm"
+                      className="px-4 py-1.5 bg-white/5 border border-white/10 text-foreground/80 rounded-full text-sm font-medium hover:bg-white/10 hover:text-foreground transition-colors duration-200"
                     >
                       {skill}
                     </motion.span>
                   ))}
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Education */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h3 className="text-2xl font-bold mb-8">
-            <span className="gradient-text">Education</span> & Certifications
-          </h3>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {education.map((edu, index) => (
-            <motion.div
-              key={edu.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-              className="bg-card rounded-xl p-6 shadow-lg border border-border hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className={`p-2 rounded-lg bg-gradient-to-r ${edu.color}`}>
-                  <edu.icon className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-primary-500">{edu.type}</span>
-                </div>
-              </div>
-
-              <h4 className="text-lg font-bold mb-2">{edu.title}</h4>
-              <p className="text-foreground/70 mb-3">{edu.institution}</p>
-              
-              <div className="flex items-center space-x-2 text-sm text-foreground/60 mb-3">
-                <MapPin className="h-4 w-4" />
-                <span>{edu.location}</span>
-              </div>
-              
-              <div className="flex items-center space-x-2 text-sm text-foreground/60 mb-4">
-                <Calendar className="h-4 w-4" />
-                <span>{edu.period}</span>
-              </div>
-
-              <p className="text-sm text-foreground/70 mb-4">{edu.description}</p>
-
-              <div>
-                <h5 className="font-semibold text-sm mb-2">Key Courses:</h5>
-                <ul className="space-y-1">
-                  {edu.courses.slice(0, 3).map((course, courseIndex) => (
-                    <li key={courseIndex} className="text-xs text-foreground/60 flex items-center space-x-1">
-                      <div className="w-1 h-1 bg-primary-500 rounded-full" />
-                      <span>{course}</span>
-                    </li>
-                  ))}
-                  {edu.courses.length > 3 && (
-                    <li className="text-xs text-foreground/60 flex items-center space-x-1">
-                      <div className="w-1 h-1 bg-primary-500 rounded-full" />
-                      <span>+{edu.courses.length - 3} more courses</span>
-                    </li>
-                  )}
-                </ul>
               </div>
             </motion.div>
           ))}

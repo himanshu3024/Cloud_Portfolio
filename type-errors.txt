@@ -1,0 +1,10 @@
+
+> himanshu-gandhi-portfolio@1.0.0 type-check
+> tsc --noEmit
+
+components/__tests__/Header.test.tsx(17,49): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion'.
+components/__tests__/Header.test.tsx(18,38): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion'.
+components/__tests__/Header.test.tsx(19,39): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion'.
+components/__tests__/Header.test.tsx(20,40): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion'.
+components/__tests__/Header.test.tsx(29,38): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion'.
+components/__tests__/Header.test.tsx(36,25): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion'.

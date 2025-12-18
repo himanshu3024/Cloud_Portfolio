@@ -3,7 +3,10 @@ import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from 'react-hot-toast';
-import './globals.css';
+import GlobalBackground from '@/components/layout/GlobalBackground';
+import ModernNavigation from '@/components/layout/ModernNavigation';
+import Footer from '@/components/layout/Footer';
+import '../styles/app.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -84,20 +87,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preload" as="font" href="/fonts/inter.woff2" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
         <Script id="jsonld-person" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -106,8 +102,8 @@ export default function RootLayout({
             url: 'https://himanshu-gandhi.vercel.app',
             jobTitle: 'Cloud & DevOps Engineer',
             sameAs: [
-              'https://github.com/himanshu-gandhi',
-              'https://linkedin.com/in/himanshu-gandhi'
+              'https://github.com/himanshu3024',
+              'https://www.linkedin.com/in/himanshu-gandhi-891204160/'
             ]
           })}
         </Script>
@@ -117,7 +113,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <GlobalBackground />
+          <ModernNavigation />
+          <main className="flex-grow relative z-10">
+            {children}
+          </main>
+          <Footer />
           <Toaster
             position="bottom-right"
             toastOptions={{
@@ -133,4 +134,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-} 
+}

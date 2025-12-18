@@ -6,194 +6,170 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <section className="min-h-screen bg-background">
-      <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] min-h-screen">
-        {/* LEFT COLUMN (40% width) */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-[#E8DFD6] dark:bg-[rgba(119,124,124,0.15)] flex items-center justify-center p-8 lg:p-16"
-        >
+    <section className="relative min-h-screen bg-transparent overflow-hidden flex items-center">
+      {/* Content Layer */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 items-center">
+
+          {/* LEFT COLUMN: Profile Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-card rounded-xl shadow-lg border border-border p-8 max-w-md w-full text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex justify-center lg:justify-end"
           >
-            {/* Profile Image */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mb-6"
+              transition={{ duration: 1.0, delay: 0.2, ease: "easeOut" }}
+              whileHover={{ scale: 1.01 }}
+              className="glass-card rounded-2xl p-8 max-w-sm w-full text-center relative overflow-hidden group"
             >
-              <div className="relative w-[200px] h-[200px] mx-auto">
+              {/* Subtle Shine Effect on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              {/* Profile Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="mb-6 relative mx-auto w-48 h-48"
+              >
+                <div className="absolute inset-0 rounded-full bg-primary/10 blur-2xl opacity-30" />
                 <Image
                   src="/photo/Photo.png"
                   alt="Himanshu Gandhi"
                   fill
-                  className="rounded-full object-cover border-4 border-primary/20"
+                  className="rounded-full object-cover border border-white/20 relative z-10 shadow-lg"
                   priority
                 />
+              </motion.div>
+
+              {/* Name */}
+              <motion.h1
+                className="text-2xl font-semibold mb-2 text-foreground tracking-tight"
+              >
+                Himanshu Gandhi
+              </motion.h1>
+
+              {/* Job Title */}
+              <div className="inline-block px-4 py-1.5 rounded-full bg-secondary/50 border border-white/5 mb-6">
+                <span className="text-sm font-medium text-muted-foreground tracking-wide">
+                  Cloud & DevOps Engineer
+                </span>
+              </div>
+
+              {/* Social Media Icons */}
+              <div className="flex justify-center space-x-4">
+                {[
+                  { Icon: Linkedin, href: '#' },
+                  { Icon: Twitter, href: '#' },
+                  { Icon: Instagram, href: '#' },
+                  { Icon: Mail, href: 'mailto:gandhi111000@hotmail.com' }
+                ].map(({ Icon, href }, index) => (
+                  <motion.a
+                    key={index}
+                    href={href}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="p-2.5 rounded-full bg-secondary/30 hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-all duration-300"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
               </div>
             </motion.div>
-
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-3xl font-bold text-foreground mb-4"
-            >
-              Himanshu Gandhi
-            </motion.h1>
-
-            {/* Blue Divider */}
-            <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="w-10 h-0.5 bg-primary mx-auto mb-4"
-            />
-
-            {/* Job Title */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className="text-sm font-medium text-foreground/70 uppercase tracking-tight mb-8"
-            >
-              Cloud Computing Professional
-            </motion.p>
-
-            {/* Social Media Icons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="flex justify-center space-x-4"
-            >
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1, color: 'var(--color-primary)' }}
-                transition={{ duration: 0.2 }}
-                className="text-foreground/60 hover:text-primary transition-colors duration-200"
-              >
-                <Facebook className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1, color: 'var(--color-primary)' }}
-                transition={{ duration: 0.2 }}
-                className="text-foreground/60 hover:text-primary transition-colors duration-200"
-              >
-                <Twitter className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1, color: 'var(--color-primary)' }}
-                transition={{ duration: 0.2 }}
-                className="text-foreground/60 hover:text-primary transition-colors duration-200"
-              >
-                <Linkedin className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.1, color: 'var(--color-primary)' }}
-                transition={{ duration: 0.2 }}
-                className="text-foreground/60 hover:text-primary transition-colors duration-200"
-              >
-                <Instagram className="w-5 h-5" />
-              </motion.a>
-            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* RIGHT COLUMN (60% width) */}
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-card flex items-center p-8 lg:p-16"
-        >
-          <div className="max-w-2xl">
-            {/* Hello Heading */}
+          {/* RIGHT COLUMN: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center lg:text-left"
+          >
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-4xl lg:text-5xl font-bold text-foreground mb-6"
+              className="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6"
             >
-              Hello
+              Building the <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-cyan-400">
+                Cloud Future.
+              </span>
             </motion.h2>
 
-            {/* Subheading */}
-            <motion.h3
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xl font-normal text-foreground mb-8"
+              className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
-              Here's who I am & what I do
-            </motion.h3>
+              Specialized in scalable infrastructure, CI/CD automation, and secure cloud-native solutions across AWS, Azure, and GCP.
+            </motion.p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons (iOS 26 Liquid Glass - Icon above Text) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3 mb-8"
+              className="flex flex-row gap-6 justify-center lg:justify-start items-center"
             >
+              {/* Primary Button - "Command" Style */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="
+                  group relative w-32 h-32 rounded-3xl
+                  bg-white/10 dark:bg-white/5
+                  backdrop-blur-3xl saturate-[180%]
+                  border border-white/20 dark:border-white/10
+                  shadow-[0_12px_48px_0_rgba(0,0,0,0.15)]
+                  hover:shadow-[0_20px_60px_0_rgba(14,165,233,0.25)]
+                  flex flex-col items-center justify-center gap-2
+                  transition-all duration-500
+                "
                 onClick={() => {
                   const link = document.createElement('a');
                   link.href = encodeURI('/Himanshu Gandhi Resume.pdf');
                   link.download = 'Himanshu_Gandhi_Resume.pdf';
-                  document.body.appendChild(link);
+                  document.head.appendChild(link);
                   link.click();
-                  link.remove();
+                  document.head.removeChild(link);
                 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold transition-all duration-200 hover:bg-primary/90 shadow-md hover:shadow-lg"
               >
-                <Download className="w-5 h-5" />
-                Download Resume
+                <div className="p-3 rounded-2xl bg-primary-500/10 text-primary-500 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300 ring-1 ring-primary-500/20 group-hover:ring-primary-500/50 shadow-sm">
+                  <Download className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold tracking-widest uppercase">Resume</span>
               </motion.button>
-              
+
+              {/* Secondary Button - "Inbox" Style */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-border text-foreground rounded-lg font-semibold transition-all duration-200 hover:bg-secondary hover:text-secondary-foreground"
+                className="
+                  group relative w-32 h-32 rounded-3xl
+                  bg-white/10 dark:bg-white/5
+                  backdrop-blur-3xl saturate-[180%]
+                  border border-white/20 dark:border-white/10
+                  shadow-[0_12px_48px_0_rgba(0,0,0,0.1)]
+                  hover:shadow-[0_15px_60px_0_rgba(14,165,233,0.15)]
+                  flex flex-col items-center justify-center gap-2
+                  transition-all duration-500
+                "
               >
-                <Mail className="w-5 h-5" />
-                Get In Touch
+                <div className="p-3 rounded-2xl bg-white/5 text-foreground/70 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300 ring-1 ring-white/10 group-hover:ring-primary-500/50 shadow-sm">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-foreground/50 group-hover:text-foreground/90">Contact</span>
               </motion.button>
             </motion.div>
-
-            {/* Text Paragraphs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className="space-y-4 text-base text-foreground/70 leading-relaxed"
-            >
-              <p>
-                I'm a passionate cloud computing professional with expertise in Microsoft Azure, Google Cloud Platform, 
-                and AWS. My journey combines hands-on experience in customer service, IT support, and program leadership 
-                with advanced technical skills in cloud infrastructure, cybersecurity, and data analytics.
-              </p>
-              <p>
-                Currently pursuing Cloud Computing Technologies at George Brown College, I bring a unique blend of 
-                technical knowledge and practical experience. I'm dedicated to designing scalable, secure, and efficient 
-                cloud solutions that drive business success and innovation.
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
-} 
+}

@@ -10,6 +10,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'cloud-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%230ea5e9\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -33,7 +35,7 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        // Cloud & DevOps themed colors
+        // Cloud & DevOps themed colors (Softened for iOS feel)
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
@@ -85,19 +87,26 @@ module.exports = {
           yellow: '#fbbc04',
           green: '#34a853',
         },
+        glass: {
+          surface: 'rgba(255, 255, 255, 0.65)',
+          'surface-dark': 'rgba(20, 20, 23, 0.60)',
+          border: 'rgba(255, 255, 255, 0.15)',
+          'border-dark': 'rgba(255, 255, 255, 0.08)',
+          highlight: 'rgba(255, 255, 255, 0.2)',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-        'slide-down': 'slideDown 0.5s ease-out',
-        'scale-in': 'scaleIn 0.3s ease-out',
+        'fade-in': 'fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-down': 'slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        'scale-in': 'scaleIn 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.2)',
         'bounce-slow': 'bounce 2s infinite',
-        'pulse-slow': 'pulse 3s infinite',
-        'float': 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 10s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'typewriter': 'typewriter 3s steps(40) 1s 1 normal both',
         'blink': 'blink 1s infinite',
@@ -108,20 +117,20 @@ module.exports = {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '0%': { transform: 'translateY(15px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
         slideDown: {
-          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '0%': { transform: 'translateY(-15px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
         scaleIn: {
-          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '0%': { transform: 'scale(0.96)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-15px)' },
         },
         glow: {
           '0%': { boxShadow: '0 0 5px #0ea5e9' },
@@ -136,16 +145,25 @@ module.exports = {
           '51%, 100%': { opacity: '0' },
         },
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'cloud-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%230ea5e9\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-      },
       backdropBlur: {
         xs: '2px',
+        sm: '4px',
+        md: '10px',
+        lg: '20px',
+        xl: '40px',
+        '2xl': '60px',
+        '3xl': '80px',
+      },
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        'glass-hover': '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
+        'neon': '0 0 10px theme("colors.primary.400")',
+        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
       },
     },
+
   },
+
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),

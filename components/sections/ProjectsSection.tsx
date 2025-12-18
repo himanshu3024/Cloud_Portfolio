@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  ExternalLink, 
-  Github, 
-  Cloud, 
-  Server, 
-  Database, 
+import {
+  ExternalLink,
+  Github,
+  Cloud,
+  Server,
+  Database,
   Shield,
   Zap,
   Globe,
@@ -155,7 +155,7 @@ export default function ProjectsSection() {
   const filteredProjects = projects.filter(project => {
     const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
     const matchesTechnology = selectedTechnology === 'All' || project.technologies.includes(selectedTechnology);
-    const matchesSearch = searchTerm === '' || 
+    const matchesSearch = searchTerm === '' ||
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -164,8 +164,8 @@ export default function ProjectsSection() {
   });
 
   return (
-    <section id="projects" className="py-20 bg-secondary/30 dark:bg-secondary/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-20 bg-transparent relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -177,7 +177,7 @@ export default function ProjectsSection() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            A collection of cloud and DevOps projects showcasing infrastructure automation, 
+            A collection of cloud and DevOps projects showcasing infrastructure automation,
             serverless applications, and multi-cloud deployments.
           </p>
         </motion.div>
@@ -236,11 +236,10 @@ export default function ProjectsSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(category.name)}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                selectedCategory === category.name
-                  ? 'bg-primary-500 text-white shadow-lg'
-                  : 'bg-card text-foreground/70 hover:text-primary-500 border border-border hover:border-primary-500'
-              }`}
+              className={`flex items-center space-x-2 px-6 py-3 rounded-[2rem] font-medium transition-all duration-300 ${selectedCategory === category.name
+                ? 'bg-white/20 dark:bg-white/10 text-foreground shadow-[0_0_15px_rgba(255,255,255,0.3)] backdrop-blur-xl border border-white/20'
+                : 'bg-white/5 dark:bg-white/5 text-foreground/70 hover:text-foreground border border-white/10 hover:bg-white/10 backdrop-blur-md'
+                }`}
             >
               <category.icon className="h-5 w-5" />
               <span>{category.name}</span>
@@ -275,24 +274,24 @@ export default function ProjectsSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="project-card group cursor-pointer"
+                className="glass-card rounded-[2rem] overflow-hidden group cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-t-xl overflow-hidden">
+                <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-accent-500/20 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10" />
                   <div className="absolute top-4 left-4">
-                    <div className={`p-2 rounded-lg bg-gradient-to-r ${project.color}`}>
+                    <div className={`p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20`}>
                       <project.icon className="h-6 w-6 text-white" />
                     </div>
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30">
-                    <div className="bg-black/50 rounded-full p-3">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-4">
                       <Eye className="h-8 w-8 text-white" />
                     </div>
                   </div>
@@ -301,26 +300,23 @@ export default function ProjectsSection() {
                 {/* Project Content */}
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      project.category === 'Cloud' 
-                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                        : project.category === 'DevOps'
-                        ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300'
-                        : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
-                    }`}>
+                    <span className={`text-xs px-3 py-1.5 rounded-full backdrop-blur-md border ${project.category === 'Cloud'
+                      ? 'bg-blue-500/10 border-blue-500/20 text-blue-300'
+                      : project.category === 'DevOps'
+                        ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
+                        : 'bg-red-500/10 border-red-500/20 text-red-300'
+                      }`}>
                       {project.category}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors duration-200">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary-400 transition-colors duration-200">
                     {project.title}
                   </h3>
-                  
+
                   {/* Problem → Approach → Outcome → Stack */}
                   <div className="text-sm text-foreground/70 space-y-1 mb-4">
-                    <div><span className="font-semibold">Problem:</span> {project.description}</div>
-                    <div><span className="font-semibold">Approach:</span> IaC + CI/CD with best-practice patterns</div>
-                    <div><span className="font-semibold">Outcome:</span> Faster, safer deploys; cleaner operations</div>
+                    <div><span className="font-semibold text-foreground/90">Problem:</span> {project.description.substring(0, 60)}...</div>
                   </div>
 
                   {/* Technologies */}
@@ -328,16 +324,11 @@ export default function ProjectsSection() {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs px-2 py-1 bg-secondary/50 rounded-full text-foreground/70"
+                        className="text-[10px] px-2 py-1 bg-white/5 border border-white/10 rounded-full text-foreground/70"
                       >
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 3 && (
-                      <span className="text-xs px-2 py-1 bg-secondary/50 rounded-full text-foreground/70">
-                        +{project.technologies.length - 3} more
-                      </span>
-                    )}
                   </div>
 
                   {/* Project Links */}
@@ -348,27 +339,12 @@ export default function ProjectsSection() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      className="flex items-center space-x-1 text-foreground/70 hover:text-primary-500 transition-colors duration-200"
+                      className="flex items-center space-x-1 text-foreground/70 hover:text-white transition-colors duration-200"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <Github className="h-4 w-4" />
                       <span className="text-sm">Code</span>
                     </motion.a>
-                    
-                    {project.live && (
-                      <motion.a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="flex items-center space-x-1 text-foreground/70 hover:text-primary-500 transition-colors duration-200"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        <span className="text-sm">Live</span>
-                      </motion.a>
-                    )}
                   </div>
                 </div>
               </motion.div>
@@ -383,85 +359,86 @@ export default function ProjectsSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[80] flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[80] flex items-center justify-center p-4"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                className="bg-card rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-3">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${selectedProject.color}`}>
+                      <div className={`p-2.5 rounded-xl bg-gradient-to-r ${selectedProject.color}`}>
                         <selectedProject.icon className="h-6 w-6 text-white" />
                       </div>
-                      <span className={`text-sm px-2 py-1 rounded-full ${
-                        selectedProject.category === 'Cloud' 
-                          ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                          : selectedProject.category === 'DevOps'
-                          ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300'
-                          : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
-                      }`}>
+                      <span className={`text-xs px-3 py-1.5 rounded-full border ${selectedProject.category === 'Cloud'
+                        ? 'bg-blue-500/10 border-blue-500/20 text-blue-300'
+                        : selectedProject.category === 'DevOps'
+                          ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
+                          : 'bg-red-500/10 border-red-500/20 text-red-300'
+                        }`}>
                         {selectedProject.category}
                       </span>
                     </div>
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="text-foreground/60 hover:text-foreground transition-colors duration-200"
+                      className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-foreground/60 hover:text-foreground transition-colors duration-200"
                     >
                       ✕
                     </button>
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4">{selectedProject.title}</h3>
-                  
+                  <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">{selectedProject.title}</h3>
+
                   {/* Project Image in Modal */}
-                  <div className="relative h-64 mb-6 rounded-xl overflow-hidden">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="relative h-64 mb-8 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
 
-                  <p className="text-foreground/70 mb-6">{selectedProject.description}</p>
-                  <div className="grid md:grid-cols-2 gap-4 mb-6">
-                    <div className="bg-secondary/30 rounded-lg p-3">
-                      <h5 className="font-semibold mb-2">Architecture</h5>
+                  <p className="text-lg text-foreground/80 mb-8 leading-relaxed">{selectedProject.description}</p>
+
+                  <div className="grid md:grid-cols-2 gap-4 mb-8">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                      <h5 className="font-semibold mb-2 text-primary-400">Architecture</h5>
                       <p className="text-sm text-foreground/70">Layered: client → API → infra. Separation of concerns with IaC for repeatability.</p>
                     </div>
-                    <div className="bg-secondary/30 rounded-lg p-3">
-                      <h5 className="font-semibold mb-2">Cost Notes</h5>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                      <h5 className="font-semibold mb-2 text-primary-400">Cost Notes</h5>
                       <p className="text-sm text-foreground/70">Right-size instances; use spot/preemptible; storage lifecycle rules; env-based scaling.</p>
                     </div>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <h4 className="font-semibold mb-3">Key Features</h4>
-                      <ul className="space-y-2">
+                      <h4 className="font-semibold mb-4 text-lg">Key Features</h4>
+                      <ul className="space-y-3">
                         {selectedProject.features.map((feature, index) => (
-                          <li key={index} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-primary-500 rounded-full" />
-                            <span className="text-foreground/70">{feature}</span>
+                          <li key={index} className="flex items-center space-x-3">
+                            <div className="w-1.5 h-1.5 bg-primary-500 rounded-full shadow-[0_0_8px_rgba(14,165,233,0.5)]" />
+                            <span className="text-foreground/80">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold mb-3">Technologies Used</h4>
+                      <h4 className="font-semibold mb-4 text-lg">Technologies Used</h4>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-secondary/50 rounded-full text-sm text-foreground/70"
+                            className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-sm text-foreground/70"
                           >
                             {tech}
                           </span>
@@ -469,19 +446,19 @@ export default function ProjectsSection() {
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4 pt-4">
+                    <div className="flex items-center space-x-4 pt-4 border-t border-white/10">
                       <motion.a
                         href={selectedProject.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center space-x-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors duration-200"
+                        className="flex items-center space-x-3 px-8 py-4 bg-primary-500/90 hover:bg-primary-500 text-white rounded-full font-bold shadow-[0_8px_40px_0_rgba(14,165,233,0.3)] backdrop-blur-md border border-white/20 transition-all duration-300"
                       >
-                        <Github className="h-4 w-4" />
-                        <span>View Code</span>
+                        <Github className="h-5 w-5" />
+                        <span>View Source</span>
                       </motion.a>
-                      
+
                       {selectedProject.live && (
                         <motion.a
                           href={selectedProject.live}
@@ -489,10 +466,10 @@ export default function ProjectsSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="flex items-center space-x-2 px-4 py-2 border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white rounded-lg font-semibold transition-all duration-200"
+                          className="flex items-center space-x-3 px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 text-foreground rounded-full font-bold transition-all duration-300 shadow-sm"
                         >
-                          <ExternalLink className="h-4 w-4" />
-                          <span>Live Demo</span>
+                          <ExternalLink className="h-5 w-5" />
+                          <span>Launch Demo</span>
                         </motion.a>
                       )}
                     </div>

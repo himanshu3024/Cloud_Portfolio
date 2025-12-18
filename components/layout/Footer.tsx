@@ -39,13 +39,13 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden text-theme">
+    <footer className="relative overflow-hidden text-foreground border-t border-white/10 dark:border-white/5 bg-white/5 dark:bg-black/20 backdrop-blur-2xl saturate-150">
       {/* Dark glossy black background to match hero/site-wide */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-black to-zinc-950" />
+        <div className="absolute inset-0 bg-glass-surface/10 dark:bg-glass-surface-dark/10 backdrop-blur-3xl" />
         <div className="absolute inset-0 bg-cloud-pattern opacity-5" />
       </div>
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -56,18 +56,18 @@ export default function Footer() {
               transition={{ duration: 0.8 }}
               className="flex items-center space-x-2 mb-4"
             >
-              <Cloud className="h-8 w-8 text-primary-400" />
-              <span className="text-xl font-bold text-theme">Himanshu Gandhi</span>
+              <Cloud className="h-8 w-8 text-primary-500 drop-shadow-lg" />
+              <span className="text-xl font-bold text-foreground tracking-tight">Himanshu Gandhi</span>
             </motion.div>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-muted-theme mb-6 max-w-md"
+              className="text-muted-foreground mb-6 max-w-md"
             >
-              Cloud & DevOps professional passionate about building scalable, secure, 
-              and efficient infrastructure solutions. Always learning and adapting to 
+              Cloud & DevOps professional passionate about building scalable, secure,
+              and efficient infrastructure solutions. Always learning and adapting to
               emerging technologies.
             </motion.p>
 
@@ -85,7 +85,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`p-3 rounded-lg icon-surface hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-200 text-theme ${social.color}`}
+                  className={`p-3 rounded-full glass-btn ${social.color}`}
                 >
                   <social.icon className="h-5 w-5" />
                 </motion.a>
@@ -99,7 +99,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={link.name}>
@@ -108,7 +108,7 @@ export default function Footer() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                     href={link.href}
-                    className="text-theme hover:text-primary-500 transition-colors duration-200 inline-block"
+                    className="text-muted-foreground hover:text-primary-500 transition-colors duration-200 inline-block"
                   >
                     {link.name}
                   </motion.a>
@@ -123,18 +123,18 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <div className="space-y-2 text-theme">
+            <h3 className="text-lg font-semibold mb-4 text-foreground">Contact</h3>
+            <div className="space-y-2 text-muted-foreground">
               <p>Toronto, Ontario, Canada</p>
-              <a 
+              <a
                 href="mailto:Gandhi111000@hotmail.com"
-                className="hover:text-primary-500 transition-colors duration-200"
+                className="block hover:text-primary-500 transition-colors duration-200"
               >
                 Gandhi111000@hotmail.com
               </a>
-              <a 
+              <a
                 href="tel:+14372673965"
-                className="hover:text-primary-500 transition-colors duration-200"
+                className="block hover:text-primary-500 transition-colors duration-200"
               >
                 (437) 267-3965
               </a>
@@ -147,20 +147,20 @@ export default function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="border-t border-theme/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+          className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
-          <div className="text-muted-theme text-sm mb-4 md:mb-0">
+          <div className="text-muted-foreground text-sm mb-4 md:mb-0">
             © {new Date().getFullYear()} Himanshu Gandhi. All rights reserved.
           </div>
-          
-          <div className="flex items-center space-x-6 text-sm text-muted-theme">
-            <a 
+
+          <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+            <a
               href="/privacy"
               className="hover:text-primary-500 transition-colors duration-200"
             >
               Privacy Policy
             </a>
-            <a 
+            <a
               href="/terms"
               className="hover:text-primary-500 transition-colors duration-200"
             >

@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  GraduationCap, 
-  Briefcase, 
-  Award, 
-  MapPin, 
+import {
+  GraduationCap,
+  Briefcase,
+  Award,
+  MapPin,
   Download,
   Play,
   Globe,
@@ -89,8 +89,8 @@ export default function AboutSection() {
   });
 
   return (
-    <section id="about" className="py-20 bg-secondary/30 dark:bg-secondary/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 bg-transparent relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Hero Section */}
         <motion.div
           ref={ref}
@@ -103,7 +103,7 @@ export default function AboutSection() {
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            From Physics equations to cloud infrastructure - here's the story of how I became passionate about 
+            From Physics equations to cloud infrastructure - here's the story of how I became passionate about
             building scalable solutions that make a difference.
           </p>
         </motion.div>
@@ -115,7 +115,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-card rounded-xl p-6 shadow-lg border border-border"
+            className="glass-card rounded-xl p-6"
           >
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center mr-3">
@@ -134,7 +134,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-card rounded-xl p-6 shadow-lg border border-border"
+            className="glass-card rounded-xl p-6"
           >
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 bg-accent-500 rounded-full flex items-center justify-center mr-3">
@@ -154,7 +154,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-card rounded-xl p-6 shadow-lg border border-border"
+            className="glass-card rounded-xl p-6"
           >
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
@@ -177,7 +177,7 @@ export default function AboutSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mb-16"
         >
-          <div className="bg-card rounded-xl p-8 shadow-lg border border-border">
+          <div className="glass-card rounded-xl p-8">
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
                 <UserCheck className="h-6 w-6 text-white" />
@@ -186,13 +186,13 @@ export default function AboutSection() {
             </div>
             <div className="space-y-4 text-lg leading-relaxed">
               <p>
-                I believe the best solutions come from collaboration, not competition. My approach is simple: listen first, 
-                understand the problem, then work together to find the best solution. Whether I'm mentoring a junior developer 
+                I believe the best solutions come from collaboration, not competition. My approach is simple: listen first,
+                understand the problem, then work together to find the best solution. Whether I'm mentoring a junior developer
                 or collaborating with senior architects, I focus on creating an environment where everyone feels heard and valued.
               </p>
               <p>
-                During my time at Ets. Africainde, I didn't just handle customer issues - I became the go-to person for training 
-                new team members. I developed a simple but effective mentoring system that helped reduce onboarding time by 40% 
+                During my time at Ets. Africainde, I didn't just handle customer issues - I became the go-to person for training
+                new team members. I developed a simple but effective mentoring system that helped reduce onboarding time by 40%
                 and improved team performance across the board. This experience showed me that the best way to grow is to help others grow.
               </p>
             </div>
@@ -215,13 +215,13 @@ export default function AboutSection() {
             </div>
             <div className="space-y-4 text-lg leading-relaxed">
               <p>
-                You're not just getting a cloud engineer - you're getting someone who will bring relentless energy, 
-                creative problem-solving, and genuine care for your team's success. I promise to approach every challenge 
+                You're not just getting a cloud engineer - you're getting someone who will bring relentless energy,
+                creative problem-solving, and genuine care for your team's success. I promise to approach every challenge
                 with the same determination that brought me from Physics student to cloud computing professional.
               </p>
               <p>
-                I'll be the person who stays late to debug that critical issue, who mentors junior developers, 
-                and who constantly looks for ways to make your systems more efficient and reliable. 
+                I'll be the person who stays late to debug that critical issue, who mentors junior developers,
+                and who constantly looks for ways to make your systems more efficient and reliable.
                 Because when I commit to something, I commit with my whole heart.
               </p>
             </div>
@@ -235,7 +235,7 @@ export default function AboutSection() {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="mb-16"
         >
-          <div className="bg-card rounded-xl p-8 shadow-lg border border-border">
+          <div className="glass-card rounded-xl p-8">
             <h3 className="text-2xl font-bold mb-6 text-center">Life Lessons That Guide Me</h3>
             <div className="grid md:grid-cols-3 gap-6">
               {lifeLessons.map((lesson, index) => (
@@ -253,7 +253,7 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        
+
 
         {/* Timeline and Skills Section */}
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -268,7 +268,7 @@ export default function AboutSection() {
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-primary-500/30" />
-              
+
               {timelineData.map((item, index) => (
                 <motion.div
                   key={index}
@@ -279,26 +279,24 @@ export default function AboutSection() {
                 >
                   {/* Timeline Dot */}
                   <div className="relative z-10 flex-shrink-0">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      item.type === 'education' 
-                        ? 'bg-primary-500 text-white' 
-                        : 'bg-accent-500 text-white'
-                    }`}>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${item.type === 'education'
+                      ? 'bg-primary-500 text-white'
+                      : 'bg-accent-500 text-white'
+                      }`}>
                       {item.icon ? <item.icon className="h-6 w-6" /> : <Briefcase className="h-6 w-6" />}
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 bg-card rounded-lg p-6 shadow-lg border border-border">
+                  <div className="flex-1 glass-card rounded-lg p-6">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-semibold text-primary-500">
                         {item.year}
                       </span>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        item.type === 'education' 
-                          ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300' 
-                          : 'bg-accent-100 text-accent-700 dark:bg-accent-900 dark:text-accent-300'
-                      }`}>
+                      <span className={`text-xs px-2 py-1 rounded-full ${item.type === 'education'
+                        ? 'bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300'
+                        : 'bg-accent-100 text-accent-700 dark:bg-accent-900 dark:text-accent-300'
+                        }`}>
                         {item.type === 'education' ? 'Education' : 'Experience'}
                       </span>
                     </div>
@@ -319,7 +317,7 @@ export default function AboutSection() {
             className="space-y-8"
           >
             {/* Personal Info */}
-            <div className="bg-card rounded-xl p-6 shadow-lg border border-border">
+            <div className="glass-card rounded-xl p-6">
               <h3 className="text-2xl font-bold mb-6">Personal Information</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
@@ -330,10 +328,10 @@ export default function AboutSection() {
                   <Globe className="h-5 w-5 text-primary-500" />
                   <span className="text-foreground/80">English (Fluent), French (Fluent), Hindi (Native)</span>
                 </div>
-                                 <div className="flex items-center space-x-3">
-                   <Briefcase className="h-5 w-5 text-primary-500" />
-                   <span className="text-foreground/80">Cloud Intern, DevOps Engineer, Cloud Architect</span>
-                 </div>
+                <div className="flex items-center space-x-3">
+                  <Briefcase className="h-5 w-5 text-primary-500" />
+                  <span className="text-foreground/80">Cloud Intern, DevOps Engineer, Cloud Architect</span>
+                </div>
                 <div className="flex items-center space-x-3">
                   <Users className="h-5 w-5 text-primary-500" />
                   <span className="text-foreground/80">Team Collaboration, Problem Solving, Continuous Learning</span>
@@ -342,7 +340,7 @@ export default function AboutSection() {
             </div>
 
             {/* Skills Progress */}
-            <div className="bg-card rounded-xl p-6 shadow-lg border border-border">
+            <div className="glass-card rounded-xl p-6">
               <h3 className="text-2xl font-bold mb-6">Technical Proficiency</h3>
               <div className="space-y-4">
                 {skills.map((skill, index) => (
@@ -372,20 +370,42 @@ export default function AboutSection() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-5">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center space-x-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-semibold transition-colors duration-200"
+                className="
+                  group relative px-6 py-3 rounded-[2rem]
+                  bg-white/10 dark:bg-white/5
+                  backdrop-blur-2xl saturate-150
+                  border border-white/20 dark:border-white/10
+                  shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]
+                  hover:shadow-[0_15px_40px_0_rgba(14,165,233,0.3)]
+                  overflow-hidden
+                  text-foreground font-medium tracking-wide
+                  flex items-center justify-center gap-2
+                  transition-all duration-300
+                "
               >
-                <Download className="h-5 w-5" />
-                <span>Download Resume</span>
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                <Download className="h-5 w-5 relative z-10" />
+                <span className="relative z-10">Download Resume</span>
               </motion.button>
-              
+
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center space-x-2 px-6 py-3 border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white rounded-lg font-semibold transition-all duration-200"
+                className="
+                  group relative px-6 py-3 rounded-[2rem]
+                  bg-transparent
+                  backdrop-blur-xl saturate-100
+                  border border-white/20 dark:border-white/10
+                  shadow-[0_4px_20px_0_rgba(0,0,0,0.05)]
+                  hover:bg-white/10
+                  text-foreground font-medium tracking-wide
+                  flex items-center justify-center gap-2
+                  transition-all duration-300
+                "
               >
                 <Play className="h-5 w-5" />
                 <span>Watch Introduction</span>
