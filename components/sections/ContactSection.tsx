@@ -19,6 +19,7 @@ import {
   Globe,
   CheckCircle
 } from 'lucide-react';
+import { sendEmail } from '@/lib/actions/sendEmail';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -95,13 +96,16 @@ export default function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const result = await sendEmail(data);
 
-      toast.success('Message sent successfully! I\'ll get back to you soon.');
-      reset();
+      if (result.success) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        reset();
+      } else {
+        toast.error(result.error || 'Failed to send message. Please try again.');
+      }
     } catch (error) {
-      toast.error('Failed to send message. Please try again.');
+      toast.error('Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

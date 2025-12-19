@@ -41,6 +41,7 @@ const education = [
         ],
         icon: GraduationCap,
         color: 'from-purple-500 to-pink-500',
+        transcript: '/education/George Brown Unofficial Transcript.pdf',
         metrics: [
             { label: 'Courses', value: '6+', icon: BookOpen },
             { label: 'Cloud Platforms', value: '3', icon: Award },
@@ -73,6 +74,7 @@ const education = [
         ],
         icon: Trophy,
         color: 'from-orange-500 to-red-500',
+        transcript: '/education/Project Management Transcript Final.pdf',
         metrics: [
             { label: 'GPA', value: '93%', icon: Star },
             { label: 'Bursary', value: '$1K', icon: Award },
@@ -242,14 +244,24 @@ export default function EducationSection() {
 
                             {/* Action Buttons */}
                             <div className="flex flex-wrap gap-4 pt-4 border-t border-white/10">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="flex items-center space-x-2 px-8 py-4 bg-primary-500/90 hover:bg-primary-500 text-white rounded-full font-bold shadow-[0_8px_32px_0_rgba(14,165,233,0.3)] backdrop-blur-md border border-white/20 transition-all duration-300"
-                                >
-                                    <Download className="h-4 w-4" />
-                                    <span>Download Transcript</span>
-                                </motion.button>
+                                {edu.transcript && (
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={() => {
+                                            const link = document.createElement('a');
+                                            link.href = encodeURI(edu.transcript);
+                                            link.download = `${edu.institution}_Transcript.pdf`;
+                                            document.body.appendChild(link);
+                                            link.click();
+                                            document.body.removeChild(link);
+                                        }}
+                                        className="flex items-center space-x-2 px-8 py-4 bg-primary-500/90 hover:bg-primary-500 text-white rounded-full font-bold shadow-[0_8px_32px_0_rgba(14,165,233,0.3)] backdrop-blur-md border border-white/20 transition-all duration-300"
+                                    >
+                                        <Download className="h-4 w-4" />
+                                        <span>Download Transcript</span>
+                                    </motion.button>
+                                )}
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
