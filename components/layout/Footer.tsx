@@ -6,13 +6,13 @@ import { ArrowUp, Github, Linkedin, Mail, Cloud } from 'lucide-react';
 const socialLinks = [
   {
     name: 'GitHub',
-    url: 'https://github.com/himanshu-gandhi',
+    url: 'https://github.com/himanshu3024',
     icon: Github,
     color: 'hover:text-gray-900 dark:hover:text-white'
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/himanshu-gandhi',
+    url: 'https://www.linkedin.com/in/himanshu-gandhi-891204160/',
     icon: Linkedin,
     color: 'hover:text-blue-600'
   },

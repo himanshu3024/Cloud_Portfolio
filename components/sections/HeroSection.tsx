@@ -55,24 +55,26 @@ export default function HeroSection() {
               {/* Job Title */}
               <div className="inline-block px-4 py-1.5 rounded-full bg-secondary/50 border border-white/5 mb-6">
                 <span className="text-sm font-medium text-muted-foreground tracking-wide">
-                  Cloud & DevOps Engineer
+                  Cloud & DevOps Student
                 </span>
               </div>
 
               {/* Social Media Icons */}
               <div className="flex justify-center space-x-4">
                 {[
-                  { Icon: Linkedin, href: '#' },
-                  { Icon: Twitter, href: '#' },
-                  { Icon: Instagram, href: '#' },
+                  { Icon: Linkedin, href: 'https://www.linkedin.com/in/himanshu-gandhi-891204160/' },
+                  { Icon: Twitter, href: 'https://x.com/varunrockx' },
+                  { Icon: Instagram, href: 'https://www.instagram.com/himanshu___gandhi/' },
                   { Icon: Mail, href: 'mailto:gandhi111000@hotmail.com' }
                 ].map(({ Icon, href }, index) => (
                   <motion.a
                     key={index}
                     href={href}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2.5 rounded-full bg-secondary/30 hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-all duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="p-2.5 rounded-full bg-secondary/30 hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-all duration-300 cursor-pointer shadow-sm backdrop-blur-md border border-white/5"
                   >
                     <Icon className="w-5 h-5" />
                   </motion.a>

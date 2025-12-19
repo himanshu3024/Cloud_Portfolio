@@ -19,10 +19,87 @@ import {
   Sparkles,
   Lock,
   Eye,
-  ArrowRight
+  ArrowRight,
+  Cloud
 } from 'lucide-react';
 
-const certifications = [
+const certifications: Certification[] = [
+  {
+    id: 10,
+    name: 'AWS Academy Graduate - Cloud Architecting',
+    issuer: 'AWS Academy',
+    date: 'December 2025',
+    icon: Cloud,
+    color: 'from-orange-500 to-amber-500',
+    glowColor: 'rgba(249, 115, 22, 0.5)',
+    description: 'Advanced cloud architecting certification covering the design of cost- and performance-optimized solutions on AWS. Expertise includes the AWS Well-Architected Framework and building distributed infrastructures through a hands-on approach.',
+    skills: [
+      'AWS Well-Architected Framework',
+      'Scalable & Highly Available Architecture',
+      'Database Decoupling (RDS)',
+      'Load Balancing & Auto Scaling',
+      'Cost Optimization',
+      'Performance Monitoring'
+    ],
+    badge: '/certificates/AWS/aws-academy-graduate-cloud-architecting-training-ba.png',
+    verification: 'https://www.credly.com/earner/earned/badge/f5ceadbd-77f1-473f-9d8b-4f79c4150582',
+    certificateUrl: '/certificates/AWS/AWS_Academy_Graduate___Cloud_Architecting___Training_Badge_Badge20251207-33-tet9sx.pdf',
+    badgeDownloadUrl: '/certificates/AWS/aws-academy-graduate-cloud-architecting-training-ba.png',
+    status: 'Active',
+    level: 'Associate',
+    credentialId: 'AWS-AC-ARCH-2025'
+  },
+  {
+    id: 9,
+    name: 'AWS Academy Graduate - Cloud Security Foundations',
+    issuer: 'AWS Academy',
+    date: 'December 2025',
+    icon: Shield,
+    color: 'from-red-600 to-rose-600',
+    glowColor: 'rgba(225, 29, 72, 0.5)',
+    description: 'Specialized certification in cloud cybersecurity principles. Demonstrates foundational knowledge of securing AWS services, identity management, and implementing security best practices in cloud environments.',
+    skills: [
+      'Cloud Cybersecurity Principles',
+      'IAM Security Best Practices',
+      'Network Defense & VPC Security',
+      'Data Encryption at Rest & Transit',
+      'Compliance & Governance',
+      'Security Monitoring'
+    ],
+    badge: '/certificates/AWS/aws-academy-graduate-cloud-security-foundations-tra.png',
+    verification: 'https://www.credly.com/earner/earned/badge/a301ac2c-416e-48a9-a598-eabe4724a70c',
+    certificateUrl: '/certificates/AWS/AWS_Academy_Graduate___Cloud_Security_Foundations___Training_Badge_Badge20251219-32-s6fmwf.pdf',
+    badgeDownloadUrl: '/certificates/AWS/aws-academy-graduate-cloud-security-foundations-tra.png',
+    status: 'Active',
+    level: 'Foundational',
+    credentialId: 'AWS-AC-SEC-2025'
+  },
+  {
+    id: 8,
+    name: 'AWS Academy Graduate - Cloud Foundations',
+    issuer: 'AWS Academy',
+    date: 'December 2025',
+    icon: Cloud,
+    color: 'from-blue-500 to-cyan-500',
+    glowColor: 'rgba(59, 130, 246, 0.5)',
+    description: 'Foundational certification providing a comprehensive overview of cloud computing concepts, AWS core services, security, architecture, pricing, and support.',
+    skills: [
+      'Cloud Computing Fundamentals',
+      'AWS Core Services (EC2, S3, RDS)',
+      'Shared Responsibility Model',
+      'AWS Pricing & Support',
+      'Identity & Access Management',
+      'Cloud Architecture Basics'
+    ],
+    badge: '/certificates/AWS/aws-academy-graduate-cloud-foundations-training-bad.png',
+    verification: 'https://www.credly.com/earner/earned/badge/a2c1eaed-acb7-448b-a782-001be9f561dc',
+    certificateUrl: '/certificates/AWS/AWS_Academy_Graduate___Cloud_Foundations___Training_Badge_Badge20251207-31-9cczeu.pdf',
+    badgeDownloadUrl: '/certificates/AWS/aws-academy-graduate-cloud-foundations-training-bad.png',
+    status: 'Active',
+    level: 'Foundational',
+    credentialId: 'AWS-AC-FOUND-2025'
+  },
+
   {
     id: 1,
     name: 'Microsoft 365 Certified: Administrator Expert (MS-102)',
@@ -43,6 +120,7 @@ const certifications = [
     ],
     badge: '/certifications/ms-102.png',
     verification: 'https://learn.microsoft.com/en-us/users/himanshugandhi-7989/credentials/1e0236dd3f7f36a8',
+    certificateUrl: '/certificates/Azure/MS-102.pdf',
     status: 'Active',
     level: 'Expert',
     credentialId: 'MS102-2025-001'
@@ -67,6 +145,7 @@ const certifications = [
     ],
     badge: '/certifications/sc-300.png',
     verification: 'https://learn.microsoft.com/api/credentials/share/en-us/HimanshuGandhi-7989/1D7394EC01189647?sharingId=1324DBCFB552537A',
+    certificateUrl: '/certificates/Azure/SC-300.pdf',
     status: 'Active',
     level: 'Associate',
     credentialId: 'SC300-2025-001'
@@ -91,6 +170,7 @@ const certifications = [
     ],
     badge: '/certifications/az-104.png',
     verification: 'https://learn.microsoft.com/api/credentials/share/en-us/HimanshuGandhi-7989/506493B6ECBC4DE8?sharingId=1324DBCFB552537A',
+    certificateUrl: '/certificates/Azure/AZ-104.pdf',
     status: 'Active',
     level: 'Associate',
     credentialId: 'AZ104-2025-001'
@@ -113,6 +193,7 @@ const certifications = [
     ],
     badge: '/certifications/google-cybersecurity.png',
     verification: 'https://www.credly.com/badges/example-1',
+    certificateUrl: '/certificates/Google/Google Cloud Cybersecurity Professional Certificate.pdf',
     status: 'Active',
     level: 'Professional',
     credentialId: 'GCP-CYB-2024-001'
@@ -135,6 +216,7 @@ const certifications = [
     ],
     badge: '/certifications/google-data-analytics.png',
     verification: 'https://www.credly.com/badges/example-2',
+    certificateUrl: '/certificates/Google/Google Cloud Data Analytics Professional Certificate.pdf',
     status: 'Active',
     level: 'Professional',
     credentialId: 'GCP-DA-2024-001'
@@ -157,6 +239,7 @@ const certifications = [
     ],
     badge: '/certifications/google-project-management.png',
     verification: 'https://www.credly.com/badges/example-3',
+    certificateUrl: '/certificates/Google/Google Project Management.pdf',
     status: 'Active',
     level: 'Professional',
     credentialId: 'GCP-PM-2024-001'
@@ -179,6 +262,7 @@ const certifications = [
     ],
     badge: '/certifications/google-data-analytics-basic.png',
     verification: 'https://www.credly.com/badges/example-4',
+    certificateUrl: '/certificates/Google/Google Data Analytics.pdf',
     status: 'Active',
     level: 'Professional',
     credentialId: 'GCP-DA-BASIC-2024-001'
@@ -213,6 +297,8 @@ interface Certification {
   verification?: string;
   badge?: string;
   status: string;
+  certificateUrl?: string;
+  badgeDownloadUrl?: string;
 }
 
 interface CertificationCardProps {
@@ -449,34 +535,62 @@ function CertificationCard({ cert, index, inView }: CertificationCardProps) {
 
           {/* Action Buttons */}
           <motion.div
-            className="flex items-center space-x-3 pt-4 border-t border-border/50"
+            className="flex flex-col space-y-2 pt-4 border-t border-border/50"
             initial={{ y: 10, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ delay: index * 0.1 + 0.8 }}
           >
+            <div className="grid grid-cols-2 gap-2">
+              {cert.certificateUrl && (
+                <motion.a
+                  href={cert.certificateUrl}
+                  download
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center justify-center space-x-2 px-3 py-2 bg-gradient-to-r from-primary-500/10 to-primary-600/10 hover:from-primary-500/20 hover:to-primary-600/20 border border-primary-500/30 rounded-lg font-bold text-[11px] transition-all text-primary-700 dark:text-primary-300"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Download Certificate</span>
+                </motion.a>
+              )}
+
+              {cert.badgeDownloadUrl ? (
+                <motion.a
+                  href={cert.badgeDownloadUrl}
+                  download
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center justify-center space-x-2 px-3 py-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 backdrop-blur-md border border-border/50 rounded-lg font-bold text-[11px] transition-all"
+                >
+                  <Award className="h-3.5 w-3.5" />
+                  <span>Download Badge</span>
+                </motion.a>
+              ) : (
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center justify-center space-x-2 px-3 py-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 backdrop-blur-md border border-border/50 rounded-lg font-bold text-[11px] transition-all"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Badge</span>
+                </motion.button>
+              )}
+            </div>
+
             {cert.verification && (
               <motion.a
                 href={cert.verification}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, x: 5 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-lg font-semibold text-sm shadow-lg shadow-primary-500/25 transition-all group/btn"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-lg font-bold text-sm shadow-lg shadow-primary-500/25 transition-all group/btn"
               >
-                <Eye className="h-4 w-4" />
-                <span>Verify</span>
+                <CheckCircle className="h-4 w-4" />
+                <span>Verify Badge</span>
                 <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-1 transition-transform" />
               </motion.a>
             )}
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`${cert.verification ? '' : 'flex-1'} flex items-center justify-center space-x-2 px-4 py-2.5 bg-secondary/50 hover:bg-secondary/70 backdrop-blur-sm rounded-lg font-semibold text-sm border border-border/50 hover:border-primary-500/50 transition-all`}
-            >
-              <Download className="h-4 w-4" />
-              <span>Badge</span>
-            </motion.button>
           </motion.div>
         </div>
 
@@ -538,7 +652,7 @@ export default function CertificationsSection() {
             Certified <span className="gradient-text">Excellence</span>
           </h2>
           <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            Industry-recognized certifications from Microsoft and Google demonstrating expertise in cloud computing,
+            Industry-recognized certifications from AWS, Microsoft, and Google demonstrating expertise in cloud computing,
             cybersecurity, data analytics, and project management.
           </p>
         </motion.div>
@@ -719,7 +833,7 @@ export default function CertificationsSection() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { value: '7', label: 'Total Certifications', icon: Award, color: 'from-primary-500 to-primary-600', delay: 1.2 },
+                { value: '10', label: 'Total Certifications', icon: Award, color: 'from-primary-500 to-primary-600', delay: 1.2 },
                 { value: '100%', label: 'Active Status', icon: CheckCircle, color: 'from-emerald-500 to-green-600', delay: 1.3 },
                 { value: '$1K', label: 'Academic Award', icon: Star, color: 'from-yellow-500 to-orange-600', delay: 1.4 },
                 { value: '93%', label: 'Academic Score', icon: TrendingUp, color: 'from-purple-500 to-pink-600', delay: 1.5 }
