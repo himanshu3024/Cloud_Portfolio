@@ -28,54 +28,20 @@ jobs:
           node-version: 20
           cache: npm
 
-      # 3️⃣ Install dependencies and build static site
-      - name: Install dependencies and build
-        run: |
-          npm ci --legacy-peer-deps || npm install --legacy-peer-deps
-          # Install missing TypeScript ESLint dependencies
-          npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser --legacy-peer-deps
-          npm run build
-          
-      # 3.5️⃣ Verify build output exists
-      - name: Verify build output
-        run: |
-          echo "Checking if out directory exists..."
-          ls -la
-          if [ -d "out" ]; then
-            echo "✅ out directory found"
-            ls -la out/
-          else
-            echo "❌ out directory not found"
-            echo "Available directories:"
-            find . -name "index.html" -type f
-            exit 1
-          fi
-
-      # 4️⃣ Install tiny OIDC helper libraries
-      - name: Install OIDC helper libs
-        run: npm install @actions/core@1.6.0 @actions/http-client --legacy-peer-deps
-
-      # 5️⃣ Obtain GitHub-issued ID token (for Azure SWA action)
-      - name: Get ID token
-        id: idtoken
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { getIDToken } = require('@actions/core');
-            return await getIDToken();
-          result-encoding: string
-
-      # 6️⃣ Deploy pre-built site to Azure Static Web Apps
-      - name: Deploy to Azure Static Web Apps
+      # 3️⃣ Build and Deploy (Hybrid Mode)
+      - name: Build And Deploy
+        id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_OCEAN_080A5230F }}
-          action: upload
-          app_location: "out"     # Point to the out folder where static files are
-          api_location: ""        # no API
-          output_location: ""     # Already built, no additional output location needed
-          skip_app_build: true    # we've already built locally
-          github_id_token: ${{ steps.idtoken.outputs.result }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Required for PR comments
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "" # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
