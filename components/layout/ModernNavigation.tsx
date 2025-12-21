@@ -53,9 +53,10 @@ export default function ModernNavigation() {
   useEffect(() => {
     setMounted(true);
 
-    // Check if device is mobile
+    // Check if device is mobile or small/medium laptop
     const checkIsMobile = () => {
-      const isMobileDevice = window.innerWidth < 1024 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      // Switch to bottom bar if screen is narrow (< 1340px) to prevent overlap with centered content
+      const isMobileDevice = window.innerWidth < 1340 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       setIsMobile(isMobileDevice);
     };
 

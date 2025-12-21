@@ -60,147 +60,46 @@ export default function HeroSection() {
   const isDesktop = breakpoint === 'desktop';
   const isTablet = breakpoint === 'tablet';
   const isMobile = breakpoint === 'mobile';
+  const lgTablet = typeof window !== 'undefined' && window.innerWidth >= 1024 && window.innerWidth < 1200;
 
   return (
     <section
       ref={containerRef}
-      className={`relative min-h-screen bg-transparent overflow-visible flex flex-col items-start justify-start ${isDesktop ? 'p-[6%_8%]' : isMobile ? 'px-6 py-20' : 'p-12'}`}
+      className={`relative min-h-screen bg-transparent overflow-visible flex flex-col items-center justify-center ${isDesktop ? 'p-[4%_6%]' : lgTablet ? 'p-12' : isMobile ? 'px-6 py-20' : 'p-12'}`}
     >
       <a href="#content" className="skip-link">Skip to main content</a>
 
-      {/* Cinematic Cue: Soft Radial Glow behind "Cloud" (Shifted to Match New Center) */}
+      {/* Cinematic Cue: Soft Radial Glow behind "Cloud" */}
       {isDesktop && (
         <div
           className="absolute z-10 pointer-events-none opacity-20"
           style={{
-            left: '63%',
-            top: '8%',
-            width: '400px',
-            height: '400px',
+            left: '50%',
+            top: '40%',
+            width: '600px',
+            height: '600px',
             background: 'radial-gradient(circle, rgba(0,166,214,0.15) 0%, transparent 70%)',
             transform: 'translate(-50%, -50%)',
-            filter: 'blur(40px)',
+            filter: 'blur(60px)',
             willChange: 'transform'
           }}
         />
       )}
 
-      {/* Main Narrative Block (Headline + Value + Badges + CTAs) - Shifted Toward Center */}
-      <motion.div
-        style={{
-          x: prefersReducedMotion ? 0 : textTranslateX,
-          y: prefersReducedMotion ? 0 : textTranslateY,
-          position: isDesktop ? 'absolute' : 'relative',
-          left: isDesktop ? '40%' : 'unset',
-          top: isDesktop ? '12%' : 'unset',
-          willChange: 'transform'
-        }}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: prefersReducedMotion ? 0.05 : 0.42, ease: [0.2, 0.9, 0.3, 1] }}
-        className="z-20 max-w-[90vw] lg:max-w-4xl text-left"
-      >
-        <h1 className="text-6xl md:text-[8rem] lg:text-[120px] font-black tracking-[-0.04em] leading-[0.85] text-[#0B2B3B] dark:text-foreground">
-          Building <br />
-          the <span className="accent-word relative">
-            Cloud
-          </span> <br />
-          Future.
-        </h1>
+      {/* Responsive Content Wrapper */}
+      <div className={`z-20 w-full max-w-7xl flex flex-col ${isDesktop ? 'lg:flex-row' : ''} items-center justify-between gap-12 lg:gap-20`}>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-8 text-xl lg:text-2xl text-[#0B2B3B]/90 dark:text-muted-foreground/90 max-w-[560px] leading-tight font-medium"
-        >
-          Designing secure, scalable cloud systems that reduce deployment time and operational cost.
-        </motion.p>
-
-        {/* Microproof Row */}
-        <div className="flex flex-wrap gap-4 mt-8">
-          {[
-            { icon: Briefcase, label: "3+ Cloud Projects" },
-            { icon: Server, label: "AWS GCP Azure" },
-            { icon: Zap, label: "CI/CD 80% Faster" }
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-full glass-card border-white/20 text-sm font-semibold text-[#0B2B3B] dark:text-foreground/80 shadow-sm"
-              aria-label={item.label}
-            >
-              <item.icon className="w-4 h-4 text-[#00A6D6]" />
-              <span>{item.label}</span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Integrated CTA Layer - Below Text */}
-        <div className={`flex flex-wrap gap-4 mt-12 ${isMobile ? 'justify-center w-full' : ''}`}>
-          <motion.button
-            whileHover={{ y: -4, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="Download Resume"
-            className="px-8 py-4 rounded-full glass-btn font-bold text-lg tracking-tight group"
-            onClick={() => {
-              const link = document.createElement('a');
-              link.href = encodeURI('/Himanshu Gandhi Resume.pdf');
-              link.download = 'Himanshu_Gandhi_Resume.pdf';
-              document.head.appendChild(link);
-              link.click();
-              document.head.removeChild(link);
-            }}
-          >
-            <div className="p-1.5 rounded-full bg-[#00A6D6]/10 text-[#00A6D6] group-hover:bg-[#00A6D6] group-hover:text-white transition-all duration-300">
-              <Download className="w-4 h-4" />
-            </div>
-            <span>Resume</span>
-          </motion.button>
-
-          <motion.button
-            whileHover={{ y: -4, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="View Projects"
-            onClick={() => router.push('/projects')}
-            className="px-8 py-4 rounded-full glass-btn font-bold text-lg tracking-tight"
-          >
-            <Compass className="w-5 h-5 opacity-40" />
-            <span>Projects</span>
-          </motion.button>
-
-          <motion.button
-            whileHover={{ y: -4, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="Contact Me"
-            onClick={() => router.push('/contact')}
-            className="px-8 py-4 rounded-full glass-btn font-bold text-lg tracking-tight"
-          >
-            <Mail className="w-5 h-5 opacity-40" />
-            <span>Contact</span>
-          </motion.button>
-        </div>
-      </motion.div>
-
-      {/* Premium Profile Card (Left Column) */}
-      {isDesktop && (
+        {/* Premium Profile Card (Left Column on Desktop, Bottom on Mobile) */}
         <motion.div
           style={{
             x: prefersReducedMotion ? 0 : cardTranslateX,
             y: prefersReducedMotion ? 0 : cardTranslateY,
-            position: 'absolute',
-            left: '8%',
-            top: '10%',
-            bottom: '10%',
-            width: '400px',
             willChange: 'transform'
           }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0.9, 0.3, 1] }}
-          className="z-30 p-10 rounded-[3rem] glass-card border-white/20 flex flex-col items-center text-center justify-between"
+          className={`shrink-0 z-30 p-10 rounded-[3rem] glass-card border-white/20 flex flex-col items-center text-center justify-between ${isDesktop ? 'w-[400px] min-h-[600px]' : isMobile ? 'w-[88vw]' : 'w-[320px]'}`}
         >
           {/* Top Status & Location */}
           <div className="w-full flex justify-between items-center mb-4">
@@ -216,7 +115,6 @@ export default function HeroSection() {
 
           {/* Large Hero Photo */}
           <div className="relative w-56 h-56 mb-8 group">
-            {/* Premium rim treatment */}
             <div className="absolute inset-0 rounded-full border-[1px] border-white/30 z-20 pointer-events-none" />
             <div className="absolute inset-[3px] rounded-full ring-[4px] ring-white/10 z-20 pointer-events-none" />
             <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#00A6D6]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-md pointer-events-none" />
@@ -284,27 +182,103 @@ export default function HeroSection() {
             </div>
           </div>
         </motion.div>
-      )}
 
-      {/* Profile Card (Tablet/Mobile Only Version) */}
-      {!isDesktop && (
+        {/* Main Narrative Block (Headline + Value + Badges + CTAs) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          style={{
+            x: prefersReducedMotion ? 0 : textTranslateX,
+            y: prefersReducedMotion ? 0 : textTranslateY,
+            willChange: 'transform'
+          }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`z-30 p-8 rounded-[2.5rem] glass-card border-white/15 shadow-[0_28px_56px_rgba(11,43,59,0.08)] backdrop-blur-[14px] saturate-[110%] group mt-16 ${isMobile ? 'mx-auto w-[88vw]' : 'mx-12 w-[320px]'}`}
+          transition={{ duration: prefersReducedMotion ? 0.05 : 0.42, ease: [0.2, 0.9, 0.3, 1] }}
+          className={`z-20 flex-1 ${isDesktop ? 'text-left' : 'text-center flex flex-col items-center'}`}
         >
-          {/* Simplified version for mobile/tablet */}
-          <div className="relative mx-auto w-32 h-32 mb-6">
-            <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 z-10">
-              <Image src="/photo/Photo.png" alt="Himanshu Gandhi" fill className="object-cover" />
-            </div>
+          <h1 className="text-6xl md:text-[8rem] lg:text-[110px] xl:text-[130px] font-black tracking-[-0.04em] leading-[0.85] text-[#0B2B3B] dark:text-foreground">
+            Building <br />
+            the <span className="accent-word relative">
+              Cloud
+            </span> <br />
+            Future.
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className={`mt-8 text-xl lg:text-2xl text-[#0B2B3B]/90 dark:text-muted-foreground/90 max-w-[560px] leading-tight font-medium ${!isDesktop ? 'mx-auto' : ''}`}
+          >
+            Designing secure, scalable cloud systems that reduce deployment time and operational cost.
+          </motion.p>
+
+          {/* Microproof Row */}
+          <div className={`flex flex-wrap gap-4 mt-8 ${!isDesktop ? 'justify-center' : ''}`}>
+            {[
+              { icon: Briefcase, label: "3+ Cloud Projects" },
+              { icon: Server, label: "AWS GCP Azure" },
+              { icon: Zap, label: "CI/CD 80% Faster" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + i * 0.1 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full glass-card border-white/20 text-sm font-semibold text-[#0B2B3B] dark:text-foreground/80 shadow-sm"
+                aria-label={item.label}
+              >
+                <item.icon className="w-4 h-4 text-[#00A6D6]" />
+                <span>{item.label}</span>
+              </motion.div>
+            ))}
           </div>
-          <div className="text-center space-y-1">
-            <h2 className="text-2xl font-bold text-[#0B2B3B] dark:text-foreground">Himanshu Gandhi</h2>
-            <p className="text-xs font-bold uppercase tracking-widest text-[#00A6D6]">Cloud Architect</p>
+
+          {/* Integrated CTA Layer - Below Text */}
+          <div className={`flex flex-wrap gap-4 mt-12 ${!isDesktop ? 'justify-center w-full' : ''}`}>
+            <motion.button
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              aria-label="Download Resume"
+              className="px-8 py-4 rounded-full glass-btn font-bold text-lg tracking-tight group"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = encodeURI('/Himanshu Gandhi Resume.pdf');
+                link.download = 'Himanshu_Gandhi_Resume.pdf';
+                document.head.appendChild(link);
+                link.click();
+                document.head.removeChild(link);
+              }}
+            >
+              <div className="p-1.5 rounded-full bg-[#00A6D6]/10 text-[#00A6D6] group-hover:bg-[#00A6D6] group-hover:text-white transition-all duration-300">
+                <Download className="w-4 h-4" />
+              </div>
+              <span>Resume</span>
+            </motion.button>
+
+            <motion.button
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              aria-label="View Projects"
+              onClick={() => router.push('/projects')}
+              className="px-8 py-4 rounded-full glass-btn font-bold text-lg tracking-tight"
+            >
+              <Compass className="w-5 h-5 opacity-40" />
+              <span>Projects</span>
+            </motion.button>
+
+            <motion.button
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              aria-label="Contact Me"
+              onClick={() => router.push('/contact')}
+              className="px-8 py-4 rounded-full glass-btn font-bold text-lg tracking-tight"
+            >
+              <Mail className="w-5 h-5 opacity-40" />
+              <span>Contact</span>
+            </motion.button>
           </div>
         </motion.div>
-      )}
+      </div>
     </section>
   );
 }
