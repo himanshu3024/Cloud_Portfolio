@@ -21,9 +21,6 @@ const nextConfig = {
     return config;
   },
 
-  // Enable static exports for deployment
-  trailingSlash: true,
-
   // Optimize for performance
   compress: true,
   poweredByHeader: false,

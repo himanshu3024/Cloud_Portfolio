@@ -19,6 +19,50 @@ import {
 
 const projects = [
   {
+    id: 11,
+    title: 'Microservices & CI/CD Pipeline with AWS',
+    description: 'Transformed a monolithic café application into independently-deployable microservices on Amazon ECS Fargate. Implemented a fully automated CI/CD pipeline with blue/green deployments for zero-downtime releases, path-based ALB routing between customer and employee services, and independent auto-scaling per service.',
+    image: '/images/Building Microservices and CICD Pipeline with AWS/Building microservices and CI_CD Pipeline.drawio (1).png',
+    category: 'DevOps',
+    technologies: ['AWS', 'ECS Fargate', 'Docker', 'ECR', 'CodePipeline', 'CodeDeploy', 'ALB', 'RDS', 'Cloud9', 'CloudWatch', 'IAM'],
+    github: 'https://github.com/himanshu3024/Building-Microservices-and-a-CI-CD-Pipeline-with-AWS',
+    live: 'https://github.com/himanshu3024',
+    features: [
+      'Monolith decomposed into customer & employee microservices',
+      'Dockerized Node.js services stored in private Amazon ECR',
+      'Blue/Green deployment with automatic rollback via CodeDeploy',
+      'Path-based ALB routing between microservices',
+      'Git-triggered fully automated CI/CD with CodePipeline',
+      'Independent scaling per service based on load',
+      'Least-privilege IAM roles per ECS task definition',
+      'Comprehensive observability via CloudWatch logs & metrics'
+    ],
+    icon: Server,
+    color: 'from-violet-600 to-purple-600'
+  },
+  {
+    id: 10,
+    title: 'Building a Scalable Web Application on AWS',
+    description: 'Re-architected a university student records system from a single crashing server into a self-healing, auto-scaling AWS infrastructure across 4 strategic phases. The system automatically scales from 2 to 10+ servers during traffic spikes, achieves 99.9% uptime via multi-AZ redundancy, and cuts cost with pay-per-use billing.',
+    image: '/images/Cloud-Web-Application-Builder/diagram-export-1-16-2026-12_56_57-AM.png',
+    category: 'Cloud',
+    technologies: ['AWS', 'VPC', 'EC2', 'RDS', 'ALB', 'ASG', 'Secrets Manager', 'MySQL', 'Linux', 'Bash'],
+    github: 'https://github.com/himanshu3024/Cloud-Web-Application-Builder',
+    live: 'https://github.com/himanshu3024/Cloud-Web-Application-Builder',
+    features: [
+      'Custom VPC with public & private subnet isolation',
+      'Auto Scaling Group: dynamically scales 2–10+ EC2 instances',
+      'Application Load Balancer for intelligent traffic distribution',
+      'Multi-AZ Amazon RDS for automatic failover in under 60 seconds',
+      'Secrets Manager for zero-plaintext credential management',
+      'Bash UserData scripts for automated server provisioning',
+      '99.9% uptime SLA — from ~95% on single-server baseline',
+      'Cost-optimized: pay only for active compute capacity'
+    ],
+    icon: Cloud,
+    color: 'from-sky-500 to-blue-600'
+  },
+  {
     id: 9,
     title: 'Securing and Monitoring Resources with AWS',
     description: 'A comprehensive cloud security project documenting a defense-in-depth implementation for a financial organization. Covers S3 hardening, VPC network defense with AWS Network Firewall, data-at-rest encryption with KMS, and automated compliance monitoring.',
