@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import GlobalBackground from '@/components/layout/GlobalBackground';
 import ModernNavigation from '@/components/layout/ModernNavigation';
 import Footer from '@/components/layout/Footer';
+import RouteWarmup from '@/components/RouteWarmup';
 import '../styles/app.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -115,6 +116,7 @@ export default function RootLayout({
         >
           <GlobalBackground />
           <ModernNavigation />
+          <RouteWarmup />
           <main className="flex-grow relative z-10">
             {children}
           </main>
