@@ -21,6 +21,11 @@ const nextConfig = {
     return config;
   },
 
+  // Static export for Azure Static Web Apps
+  // All pages are pre-rendered as HTML — no server functions needed.
+  output: 'export',
+  trailingSlash: true,
+
   // Optimize for performance
   compress: true,
   poweredByHeader: false,

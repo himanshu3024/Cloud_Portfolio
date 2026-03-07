@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import toast from 'react-hot-toast';
+import emailjs from 'emailjs-com';
 import {
   Mail,
   Phone,
@@ -19,7 +20,6 @@ import {
   Globe,
   CheckCircle
 } from 'lucide-react';
-import { sendEmail } from '@/lib/actions/sendEmail';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -94,18 +94,23 @@ export default function ContactSection() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-
     try {
-      const result = await sendEmail(data);
-
-      if (result.success) {
-        toast.success("Message sent successfully! I'll get back to you soon.");
-        reset();
-      } else {
-        toast.error(result.error || 'Failed to send message. Please try again.');
-      }
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        {
+          from_name:  data.name,
+          from_email: data.email,
+          subject:    data.subject,
+          message:    data.message,
+          to_email:   'Gandhi111000@hotmail.com',
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  || ''
+      );
+      toast.success("Message sent successfully! I'll get back to you soon.");
+      reset();
     } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
+      toast.error('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

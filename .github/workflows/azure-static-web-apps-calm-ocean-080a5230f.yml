@@ -42,7 +42,21 @@ jobs:
             return await getIDToken();
           result-encoding: string
 
-      # 5️⃣ Build and Deploy (Hybrid Mode)
+      # 5️⃣ Install project dependencies
+      - name: Install project dependencies
+        run: npm ci --legacy-peer-deps
+
+      # 6️⃣ Build Next.js static export (outputs to ./out)
+      - name: Build static export
+        run: npm run build
+        env:
+          # EmailJS client-side keys \u2014 add these in Azure SWA Application Settings
+          # (Portal \u2192 your SWA \u2192 Configuration \u2192 Environment Variables)
+          NEXT_PUBLIC_EMAILJS_SERVICE_ID:  ${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
+          NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
+          NEXT_PUBLIC_EMAILJS_PUBLIC_KEY:  ${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+
+      # 7️⃣ Deploy pre-built static files to Azure SWA
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -52,10 +66,9 @@ jobs:
           action: "upload"
           app_location: "/" 
           api_location: "" 
-          output_location: "" 
+          output_location: "out"
+          skip_app_build: true
           github_id_token: ${{ steps.idtoken.outputs.result }}
-        env:
-          NODE_VERSION: 20
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
