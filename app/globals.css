@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f7f8fa;
+}
+
+::selection {
+  background: rgba(88, 107, 132, 0.18);
+}
+
+@layer base {
+  body {
+    @apply text-ink;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  iframe {
+    @apply block;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif), Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-sans {
+    font-family: var(--font-sans), sans-serif;
+  }
+
+  .signature-word {
+    position: relative;
+    z-index: 0;
+    display: inline;
+    color: #43556e;
+  }
+
+  .signature-word::after {
+    content: "";
+    position: absolute;
+    left: -0.04em;
+    right: -0.04em;
+    bottom: 0.08em;
+    height: 0.42em;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(88, 107, 132, 0.18), rgba(88, 107, 132, 0.08));
+    z-index: -1;
+  }
+}
