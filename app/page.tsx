@@ -45,12 +45,12 @@ export default function HomePage() {
                   <h1 className="max-w-5xl font-serif text-5xl leading-none text-ink sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
                     {site.name}
                   </h1>
-                  <p className="text-lg text-slate sm:text-xl">
-                    {site.title} focused on cloud infrastructure, <AccentText>systems reliability</AccentText>, and automation-led delivery.
+                  <p className="body-copy text-lg sm:text-xl">
+                    {site.title} focused on <AccentText>cloud infrastructure</AccentText>, systems reliability, and automation-led delivery.
                   </p>
                 </div>
 
-                <p className="max-w-2xl text-base leading-8 text-slate sm:text-lg">
+                <p className="body-copy max-w-2xl text-base leading-8 sm:text-lg">
                   I am building toward cloud, infrastructure, and modern IT roles where dependable systems, thoughtful
                   automation, and operational discipline matter. My portfolio brings together multi-cloud study,
                   certification depth, and hands-on projects in architecture, security, and delivery workflows.
@@ -76,7 +76,7 @@ export default function HomePage() {
               <div className="grid gap-4">
                 {highlights.map((item) => (
                   <div key={item} className="rounded-[24px] border border-line/80 bg-white/80 p-5">
-                    <p className="text-sm leading-7 text-slate">{item}</p>
+                    <p className="body-copy text-sm leading-7">{item}</p>
                   </div>
                 ))}
               </div>
@@ -93,7 +93,7 @@ export default function HomePage() {
               <Panel key={item.title} className="h-full">
                 <Icon className="mb-5 text-accent" size={20} />
                 <h2 className="text-xl font-semibold text-ink">{item.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-slate">{item.description}</p>
+                <p className="body-copy mt-3 text-sm leading-7">{item.description}</p>
               </Panel>
             );
           })}
@@ -102,17 +102,21 @@ export default function HomePage() {
 
       <Section>
         <Container className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <Panel>
+          <Panel className="tonal-section">
             <SectionHeading
               eyebrow="Career Snapshot"
-              title="A portfolio shaped by cloud learning, service operations, and dependable execution."
+              title={
+                <>
+                  A portfolio shaped by cloud learning, service operations, and <AccentText>dependable execution</AccentText>.
+                </>
+              }
               description="This site is built around a clear direction: move from technical support and structured operational work into cloud, infrastructure, and automation-oriented roles with stronger systems responsibility."
             />
           </Panel>
           <div className="grid gap-4 sm:grid-cols-2">
             {snapshot.map((item) => (
-              <Panel key={item.label} className="min-h-[160px]">
-                <p className="text-sm uppercase tracking-[0.16em] text-slate">{item.label}</p>
+              <Panel key={item.label} className="tonal-section min-h-[160px]">
+                <p className="body-copy text-sm uppercase tracking-[0.16em]">{item.label}</p>
                 <p className="mt-4 text-xl leading-8 text-ink">{item.value}</p>
               </Panel>
             ))}
@@ -137,21 +141,19 @@ export default function HomePage() {
                 key={project.title}
                 className={
                   index === 0
-                    ? "flex h-full flex-col justify-between border-[rgba(88,107,132,0.22)] bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(231,236,242,0.82))]"
-                    : "flex h-full flex-col justify-between"
+                    ? "featured-panel flex h-full flex-col justify-between"
+                    : "tonal-section flex h-full flex-col justify-between"
                 }
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{project.type}</p>
                     {index === 0 ? (
-                      <span className="inline-flex rounded-full bg-[rgba(88,107,132,0.12)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accentDeep">
-                        Flagship Proof
-                      </span>
+                      <span className="featured-label">Flagship Proof</span>
                     ) : null}
                   </div>
                   <h3 className="mt-4 text-2xl font-semibold text-ink">{project.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-slate">{project.description}</p>
+                  <p className="body-copy mt-4 text-sm leading-7">{project.description}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {project.demonstrates.slice(0, 3).map((item) => (
                       <Pill key={item}>{item}</Pill>
@@ -202,11 +204,11 @@ export default function HomePage() {
               {featuredCerts.map((cert) => (
                 <div
                   key={cert.name}
-                  className="flex flex-col gap-4 rounded-[22px] border border-line/90 bg-white/70 p-5 sm:flex-row sm:items-center sm:justify-between"
+                  className="tonal-section flex flex-col gap-4 rounded-[22px] p-5 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div>
                     <p className="font-semibold text-ink">{cert.name}</p>
-                    <p className="text-sm text-slate">
+                    <p className="body-copy text-sm">
                       {cert.issuer} · {cert.category} · {cert.date}
                     </p>
                   </div>

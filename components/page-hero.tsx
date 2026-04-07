@@ -20,7 +20,7 @@ export function PageHero({
           <h1 className="max-w-4xl font-serif text-4xl leading-tight text-ink sm:text-5xl lg:text-6xl">
             {title}
           </h1>
-          <p className="max-w-2xl text-base leading-8 text-slate sm:text-lg">{intro}</p>
+          <p className="body-copy max-w-2xl text-base leading-8 sm:text-lg">{intro}</p>
         </div>
         {aside ? <div>{aside}</div> : null}
       </Container>

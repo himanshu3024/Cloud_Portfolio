@@ -20,12 +20,12 @@ export default function AboutPage() {
         }
         intro="My work sits at the intersection of cloud learning, infrastructure thinking, and dependable execution. I’m building toward roles in cloud, systems, support, and automation by combining hands-on project work with experience in environments where structure, trust, and consistency matter."
         aside={
-          <Panel>
-            <p className="text-sm uppercase tracking-[0.16em] text-slate">Quick Facts</p>
+          <Panel className="tonal-section">
+            <p className="body-copy text-sm uppercase tracking-[0.16em]">Quick Facts</p>
             <div className="mt-5 grid gap-4">
               {snapshot.map((item) => (
                 <div key={item.label}>
-                  <p className="text-xs uppercase tracking-[0.16em] text-slate">{item.label}</p>
+                  <p className="body-copy text-xs uppercase tracking-[0.16em]">{item.label}</p>
                   <p className="mt-1 text-base text-ink">{item.value}</p>
                 </div>
               ))}
@@ -36,7 +36,7 @@ export default function AboutPage() {
 
       <Section>
         <Container className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <Panel>
+          <Panel className="tonal-section">
             <SectionHeading
               eyebrow="Narrative"
               title={
@@ -46,7 +46,7 @@ export default function AboutPage() {
               }
               description="I started in IT support, where I learned the value of troubleshooting clearly, documenting well, and earning user trust. That foundation still shapes how I approach infrastructure today: systems should be understandable, dependable, and built with operations in mind."
             />
-            <div className="mt-8 space-y-5 text-base leading-8 text-slate">
+            <div className="body-copy mt-8 space-y-5 text-base leading-8">
               <p>
                 Since then, I’ve continued building toward cloud and infrastructure roles through formal education, certification work, and project-based implementation across AWS, Azure, and GCP. The strongest themes in my work are architecture, automation, security, observability, and practical operational reliability.
               </p>
@@ -56,10 +56,14 @@ export default function AboutPage() {
             </div>
           </Panel>
 
-          <Panel className="bg-pearl/70">
+          <Panel className="tonal-section bg-pearl/55">
             <SectionHeading
               eyebrow="What I Bring"
-              title="A balanced mix of technical depth, operational structure, and professionalism."
+              title={
+                <>
+                  A balanced mix of technical depth, <AccentText>operational structure</AccentText>, and professionalism.
+                </>
+              }
             />
             <div className="mt-8 grid gap-4">
               {[
@@ -68,7 +72,7 @@ export default function AboutPage() {
                 "Project management training that strengthens planning, communication, and execution",
                 "Public-facing service and administrative experience that translates into calm, reliable teamwork and stronger operational discipline",
               ].map((item) => (
-                <div key={item} className="rounded-[22px] border border-white/80 bg-white/90 p-5 text-sm leading-7 text-slate">
+                <div key={item} className="body-copy rounded-[22px] border border-white/80 bg-white/90 p-5 text-sm leading-7">
                   {item}
                 </div>
               ))}
@@ -79,7 +83,7 @@ export default function AboutPage() {
 
       <Section className="pt-4">
         <Container>
-          <Panel>
+          <Panel className="tonal-section">
             <SectionHeading
               eyebrow="Beyond The Resume"
               title="How I like to work"
@@ -100,13 +104,13 @@ export default function AboutPage() {
                   description: "My service background has made consistency, follow-through, and professionalism central to how I contribute.",
                 },
               ].map((item) => (
-                <div key={item.title} className="rounded-[24px] border border-line p-6">
+                <div key={item.title} className="rounded-[24px] border border-line/90 bg-white/62 p-6">
                   <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate">{item.description}</p>
+                  <p className="body-copy mt-3 text-sm leading-7">{item.description}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-sm text-slate">Languages: {site.languages.join(", ")}.</p>
+            <p className="body-copy mt-8 text-sm">Languages: {site.languages.join(", ")}.</p>
           </Panel>
         </Container>
       </Section>

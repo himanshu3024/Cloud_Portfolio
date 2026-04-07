@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
-import { ButtonLink, Container, Panel, Section, SmartLink } from "@/components/ui";
+import { AccentText, ButtonLink, Container, Panel, Section, SmartLink } from "@/components/ui";
 import { site } from "@/data/portfolio";
 
 export const metadata: Metadata = {
@@ -14,7 +14,11 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Open to conversations about cloud, infrastructure, systems, and modern IT roles."
+        title={
+          <>
+            Open to conversations about cloud, infrastructure, systems, and <AccentText>modern IT roles</AccentText>.
+          </>
+        }
         intro="If you’re hiring for cloud administration, infrastructure support, DevOps, or systems-oriented work, I’d be glad to connect. The best outreach is clear, direct, and professional, and I appreciate the same approach."
       />
 
@@ -55,12 +59,12 @@ export default function ContactPage() {
               const Icon = item.icon;
               return (
                 <SmartLink key={item.label} href={item.href}>
-                  <Panel className="flex items-center gap-4 transition hover:border-accent">
+                  <Panel className="tonal-section flex items-center gap-4 transition hover:border-accent">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accentSoft text-accent">
                       <Icon size={18} />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate">{item.label}</p>
+                      <p className="body-copy text-xs font-semibold uppercase tracking-[0.18em]">{item.label}</p>
                       <p className="mt-1 text-base text-ink">{item.value}</p>
                     </div>
                   </Panel>

@@ -17,7 +17,7 @@ export function SiteHeader() {
       <Container className="flex h-[72px] items-center justify-between gap-4">
         <Link href="/" className="flex flex-col">
           <span className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">HG</span>
-          <span className="text-sm text-slate">{site.title}</span>
+          <span className="body-copy text-sm">{site.title}</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -29,7 +29,7 @@ export function SiteHeader() {
                 href={item.href}
                 className={clsx(
                   "rounded-full px-4 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-mist",
-                  active ? "bg-white text-ink shadow-sm" : "text-slate hover:bg-white/80 hover:text-ink",
+                  active ? "bg-white text-ink shadow-sm" : "body-copy hover:bg-white/80 hover:text-ink",
                 )}
               >
                 {item.label}
@@ -60,7 +60,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className={clsx(
                     "rounded-2xl px-4 py-3 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-mist",
-                    active ? "bg-ink text-white" : "text-slate hover:bg-mist hover:text-ink",
+                    active ? "bg-ink text-white" : "body-copy hover:bg-mist hover:text-ink",
                   )}
                 >
                   {item.label}

@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-import { Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/data/portfolio";
-
-const sans = Manrope({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   title: `${site.name} | ${site.title}`,
@@ -33,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="en">
       <body className="bg-grain font-sans text-ink antialiased">
         <SiteHeader />
         <main>{children}</main>

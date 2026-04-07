@@ -48,7 +48,7 @@ export function SectionHeading({
     <div className="max-w-3xl space-y-4">
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl">{title}</h2>
-      {description ? <p className="text-base leading-7 text-slate sm:text-lg">{description}</p> : null}
+      {description ? <p className="body-copy text-base leading-8 sm:text-lg">{description}</p> : null}
     </div>
   );
 }
@@ -74,7 +74,7 @@ export function Panel({
 
 export function Pill({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-full border border-line bg-white px-3 py-1 text-xs font-medium text-slate">
+    <span className="body-copy inline-flex rounded-full border border-line bg-white px-3 py-1 text-xs font-medium">
       {children}
     </span>
   );

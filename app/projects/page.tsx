@@ -24,32 +24,32 @@ export default function ProjectsPage() {
 
       <Section className="pt-4">
         <Container className="grid gap-6">
-          {projects.map((project) => (
-            <Panel key={project.title}>
+          {projects.map((project, index) => (
+            <Panel key={project.title} className={project.featured && index === 0 ? "featured-panel" : "tonal-section"}>
               <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_340px]">
                 <div>
                   <div className="flex flex-wrap gap-3">
                     <Pill>{project.type}</Pill>
-                    {project.featured ? <Pill>Featured</Pill> : null}
+                    {project.featured ? <span className="featured-label">Featured</span> : null}
                   </div>
                   <h2 className="mt-5 text-3xl font-semibold text-ink">{project.title}</h2>
-                  <p className="mt-4 max-w-3xl text-base leading-8 text-slate">{project.description}</p>
+                  <p className="body-copy mt-4 max-w-3xl text-base leading-8">{project.description}</p>
 
                   <div className="mt-8 grid gap-5 xl:grid-cols-2">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Why it was built</p>
-                      <p className="mt-3 text-sm leading-7 text-slate">{project.purpose}</p>
+                      <p className="body-copy mt-3 text-sm leading-7">{project.purpose}</p>
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Architecture</p>
-                      <p className="mt-3 text-sm leading-7 text-slate">{project.architecture}</p>
+                      <p className="body-copy mt-3 text-sm leading-7">{project.architecture}</p>
                     </div>
                   </div>
 
                   <div className="mt-8 grid gap-5 xl:grid-cols-2">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Key technical decisions</p>
-                      <ul className="mt-3 grid gap-2 text-sm leading-7 text-slate">
+                      <ul className="body-copy mt-3 grid gap-2 text-sm leading-7">
                         {project.decisions.map((decision) => (
                           <li key={decision}>{decision}</li>
                         ))}
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">What this project demonstrates</p>
-                      <ul className="mt-3 grid gap-2 text-sm leading-7 text-slate">
+                      <ul className="body-copy mt-3 grid gap-2 text-sm leading-7">
                         {project.outcomes.map((outcome) => (
                           <li key={outcome}>{outcome}</li>
                         ))}
@@ -66,7 +66,7 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[24px] border border-line bg-mist/70 p-6">
+                <div className="rounded-[24px] border border-line/80 bg-white/55 p-6">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Technology Stack</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {project.stack.map((item) => (
