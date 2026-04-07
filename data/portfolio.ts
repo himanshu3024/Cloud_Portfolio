@@ -1,3 +1,22 @@
+type Project = {
+  title: string;
+  href: string;
+  liveHref?: string;
+  type: string;
+  featured: boolean;
+  description: string;
+  purpose: string;
+  architecture: string;
+  decisions: string[];
+  stack: string[];
+  outcomes: string[];
+  demonstrates: string[];
+  architectureSnapshot?: string[];
+  securityHighlights?: string[];
+  operationsHighlights?: string[];
+  backendFunctions?: string[];
+};
+
 export const site = {
   name: "Himanshu Gandhi",
   title: "Cloud & DevOps Engineer",
@@ -5,13 +24,13 @@ export const site = {
   email: "Gandhi111000@hotmail.com",
   phone: "(437) 267-3965",
   github: "https://github.com/himanshu3024",
-  linkedin: "https://linkedin.com/in/himanshu-gandhi",
+  linkedin: "https://www.linkedin.com/in/himanshu-gandhi-891204160/",
   availability: "Available for opportunities",
   languages: ["English", "French", "Hindi"],
   intro:
-    "Cloud-focused builder working toward infrastructure, systems, and automation roles with a strong foundation in service operations, structured execution, and multi-cloud learning.",
+    "Cloud-focused builder moving toward infrastructure, serverless systems, and secure modern operations with a strong foundation in service discipline, structured execution, and multi-cloud learning.",
   summary:
-    "Cloud and DevOps engineer with hands-on work across AWS, Azure, and GCP, backed by nine professional certifications, a current post-graduate focus in cloud computing, and project experience in automation, security, infrastructure, and operational reliability.",
+    "Cloud and DevOps engineer with hands-on work across AWS, Azure, and GCP, backed by nine professional certifications, a current post-graduate focus in cloud computing, and project experience in serverless architecture, automation, security, infrastructure, and operational reliability.",
 };
 
 export const navigation = [
@@ -26,9 +45,10 @@ export const navigation = [
 ];
 
 export const highlights = [
+  "Flagship AWS serverless platform combining edge security, real-time collaboration, and production-minded observability",
   "9 certifications spanning AWS, Microsoft, and Google Cloud",
-  "Hands-on cloud portfolio covering microservices, security, IaC, monitoring, and high-availability design",
-  "Cloud computing studies reinforced by project management, IT support, and public-service operational discipline",
+  "Hands-on cloud portfolio covering serverless architecture, microservices, security, IaC, monitoring, and high-availability design",
+  "Cloud computing studies reinforced by project management, IT support, and structured operational discipline",
 ];
 
 export const expertise = [
@@ -187,7 +207,76 @@ export const education = [
   },
 ];
 
-export const projects = [
+export const projects: Project[] = [
+  {
+    title: "EdgeFile - Serverless File Sharing & Collaboration Platform",
+    href: "https://github.com/Work-Integrated-Project/EdgeFIle",
+    liveHref: "https://edgefile.me",
+    type: "Flagship Project | Serverless Cloud Engineering",
+    featured: true,
+    description:
+      "Built a cloud-native file platform on AWS where users can upload, organize, share, comment on, and collaborate on files in real time without running traditional servers or container infrastructure.",
+    purpose:
+      "Built as a serious serverless capstone to demonstrate cloud engineering judgment across security, scalability, event-driven architecture, cost-aware design, and production-minded observability.",
+    architecture:
+      "Edge traffic is protected through Route 53, CloudFront, and AWS WAF before requests reach an Amplify-hosted React frontend and an AppSync GraphQL API backed by Lambda, DynamoDB, and S3, with Cognito for identity, KMS for encryption, Glacier lifecycle archival, and CloudWatch for logs, metrics, and alarms.",
+    decisions: [
+      "Used presigned URLs so files upload directly from the browser to S3 instead of passing through Lambda, reducing latency and keeping the backend lightweight.",
+      "Used Cognito JWT authentication with AppSync authorization so identity is enforced before resolver execution.",
+      "Added AppSync subscriptions over WebSockets so file activity and comments update in real time without polling.",
+      "Applied lifecycle policies to move older objects into Glacier automatically for lower long-term storage cost.",
+    ],
+    stack: [
+      "AWS",
+      "Route 53",
+      "WAF",
+      "CloudFront",
+      "Amplify",
+      "AppSync",
+      "Lambda",
+      "DynamoDB",
+      "S3",
+      "S3 Glacier",
+      "Cognito",
+      "KMS",
+      "IAM",
+      "CloudWatch",
+      "React",
+      "TypeScript",
+      "Vite",
+      "Framer Motion",
+    ],
+    outcomes: [
+      "Designed a fully serverless architecture with no EC2, containers, or managed servers to maintain",
+      "Enforced secure file handling with time-limited presigned uploads, blocked public S3 access, and KMS-backed encryption",
+      "Built real-time collaboration behavior through AppSync subscriptions for comments and file activity",
+      "Kept the platform operationally light and cost-efficient by relying on managed AWS services that scale with usage",
+    ],
+    demonstrates: [
+      "Serverless design judgment",
+      "AWS service integration",
+      "Security-first architecture",
+      "Scalability planning",
+      "Operational observability",
+      "Cost-aware infrastructure",
+    ],
+    architectureSnapshot: [
+      "Route 53, CloudFront, and WAF shape protected edge delivery before traffic reaches the application layer.",
+      "Amplify hosts the frontend while AppSync coordinates authenticated GraphQL access and real-time subscriptions.",
+      "S3 stores files, DynamoDB tracks metadata, and Lambda handles targeted backend logic such as presigned uploads and Cognito user queries.",
+    ],
+    securityHighlights: [
+      "WAF protects the edge before traffic reaches backend services, with HTTPS and minimum TLS standards enforced.",
+      "KMS customer-managed keys encrypt both stored objects and metadata, backed by policy-level enforcement.",
+      "IAM roles are tightly scoped, S3 public access is blocked, and presigned URLs are time-limited and object-specific.",
+    ],
+    operationsHighlights: [
+      "CloudWatch logs, metrics, and alarms provide production-minded visibility across API activity and backend functions.",
+      "The platform scales automatically under demand and stays low maintenance because every major component is managed.",
+      "Its cost model stays efficient under light usage and grows with real demand instead of reserved baseline infrastructure.",
+    ],
+    backendFunctions: ["GeneratePresignedUrl Lambda", "CognitoUsersFetch Lambda"],
+  },
   {
     title: "Microservices & CI/CD Pipeline with AWS",
     href: "https://github.com/himanshu3024/Building-Microservices-and-a-CI-CD-Pipeline-with-AWS",

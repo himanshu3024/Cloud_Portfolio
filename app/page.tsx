@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
+  const flagshipProject = featuredProjects[0];
   const featuredCerts = certifications.slice(0, 3);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -46,14 +47,14 @@ export default function HomePage() {
                     {site.name}
                   </h1>
                   <p className="body-copy text-lg sm:text-xl">
-                    {site.title} focused on <AccentText>cloud infrastructure</AccentText>, systems reliability, and automation-led delivery.
+                    {site.title} focused on <AccentText>cloud infrastructure</AccentText>, serverless systems, and secure operations.
                   </p>
                 </div>
 
                 <p className="body-copy max-w-2xl text-base leading-8 sm:text-lg">
-                  I am building toward cloud, infrastructure, and modern IT roles where dependable systems, thoughtful
-                  automation, and operational discipline matter. My portfolio brings together multi-cloud study,
-                  certification depth, and hands-on projects in architecture, security, and delivery workflows.
+                  I am building toward cloud infrastructure, serverless, and systems-oriented roles where security,
+                  reliability, and operational clarity matter. This portfolio brings together multi-cloud study,
+                  certification depth, and hands-on proof in architecture, automation, observability, and delivery.
                 </p>
 
                 <div className="flex flex-wrap gap-3">
@@ -69,7 +70,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap gap-3">
                   <Pill>{site.availability}</Pill>
                   <Pill>AWS, Azure, GCP</Pill>
-                  <Pill>Infrastructure, Automation, Security</Pill>
+                  <Pill>Serverless, Infrastructure, Security</Pill>
                 </div>
               </div>
 
@@ -133,7 +134,7 @@ export default function HomePage() {
                 Selected projects that show how I think about architecture, security, and <AccentText>operational reliability</AccentText>.
               </>
             }
-            description="These projects are intended as proof, not decoration. They demonstrate how I approach cloud design, automation, infrastructure structure, and the trade-offs involved in building systems that are easier to run well."
+            description="These projects are intended as proof, not decoration. EdgeFile leads the set as the clearest signal of how I think about cloud design, serverless architecture, security controls, and systems that stay easier to operate well."
           />
           <div className="grid gap-6 xl:grid-cols-3">
             {featuredProjects.map((project, index) => (
@@ -149,23 +150,45 @@ export default function HomePage() {
                   <div className="flex flex-wrap items-center gap-3">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{project.type}</p>
                     {index === 0 ? (
-                      <span className="featured-label">Flagship Proof</span>
+                      <span className="featured-label">Featured Project</span>
                     ) : null}
                   </div>
                   <h3 className="mt-4 text-2xl font-semibold text-ink">{project.title}</h3>
                   <p className="body-copy mt-4 text-sm leading-7">{project.description}</p>
+                  {index === 0 && flagshipProject?.architectureSnapshot ? (
+                    <div className="mt-5 rounded-[22px] border border-white/70 bg-white/62 p-4">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">Architecture Snapshot</p>
+                      <p className="body-copy mt-3 text-sm leading-7">{flagshipProject.architectureSnapshot[0]}</p>
+                    </div>
+                  ) : null}
                   <div className="mt-5 flex flex-wrap gap-2">
                     {project.demonstrates.slice(0, 3).map((item) => (
                       <Pill key={item}>{item}</Pill>
                     ))}
                   </div>
                 </div>
-                <SmartLink
-                  href={project.href}
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-accent"
-                >
-                  View repository <ArrowRight size={16} />
-                </SmartLink>
+                {project.href ? (
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    <SmartLink
+                      href={project.href}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-accent"
+                    >
+                      View repository <ArrowRight size={16} />
+                    </SmartLink>
+                    {project.liveHref ? (
+                      <SmartLink
+                        href={project.liveHref}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-accentDeep hover:text-accent"
+                      >
+                        Live demo <ArrowRight size={16} />
+                      </SmartLink>
+                    ) : null}
+                  </div>
+                ) : (
+                  <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accentDeep">
+                    Case-study summary featured on portfolio
+                  </span>
+                )}
               </Panel>
             ))}
           </div>
@@ -230,14 +253,17 @@ export default function HomePage() {
           <Panel className="flex flex-col gap-6 bg-[linear-gradient(140deg,rgba(13,17,23,0.96),rgba(31,78,121,0.88))] text-white sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/65">Open to Opportunities</p>
-              <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Let’s connect about cloud, infrastructure, systems, and automation-focused roles.</h2>
+              <h2 className="mt-3 font-serif text-3xl sm:text-4xl">Open to cloud, systems, and infrastructure conversations where reliability and judgment matter.</h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-white/72 sm:text-base">
+                I’m especially interested in internships, co-op opportunities, and early-career roles across cloud operations, serverless platforms, infrastructure support, and secure modern IT environments.
+              </p>
             </div>
             <SmartLink
               href={`mailto:${site.email}`}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:bg-pearl"
             >
               <Mail size={16} />
-              Contact Himanshu
+              Discuss an Opportunity
             </SmartLink>
           </Panel>
         </Container>
