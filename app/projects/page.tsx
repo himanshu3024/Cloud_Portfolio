@@ -46,7 +46,7 @@ export default function ProjectsPage() {
                   <div className="rounded-[24px] border border-white/75 bg-white/62 p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Architecture Snapshot</p>
                     <div className="body-copy mt-3 grid gap-3 text-sm leading-7">
-                      {flagshipProject.architectureSnapshot.map((item) => (
+                      {flagshipProject.architectureSnapshot?.map((item) => (
                         <p key={item}>{item}</p>
                       ))}
                     </div>
