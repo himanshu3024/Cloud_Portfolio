@@ -65,7 +65,7 @@ export default function ProjectsPage() {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Security & Infrastructure</p>
                     <ul className="body-copy mt-3 grid gap-2 text-sm leading-7">
-                      {flagshipProject.securityHighlights.map((item) => (
+                      {flagshipProject.securityHighlights?.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
@@ -73,7 +73,7 @@ export default function ProjectsPage() {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Scalability & Operations</p>
                     <ul className="body-copy mt-3 grid gap-2 text-sm leading-7">
-                      {flagshipProject.operationsHighlights.map((item) => (
+                      {flagshipProject.operationsHighlights?.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
@@ -98,7 +98,7 @@ export default function ProjectsPage() {
 
                 <p className="mt-7 text-xs font-semibold uppercase tracking-[0.18em] text-accent">Backend Functions</p>
                 <div className="body-copy mt-3 grid gap-2 text-sm leading-7">
-                  {flagshipProject.backendFunctions.map((item) => (
+                  {flagshipProject.backendFunctions?.map((item) => (
                     <p key={item}>{item}</p>
                   ))}
                 </div>
